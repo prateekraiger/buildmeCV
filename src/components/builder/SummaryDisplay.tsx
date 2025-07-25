@@ -7,18 +7,14 @@ export const SummaryDisplay: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold text-text-light">
-        Review Your Resume
-      </h3>
-      <p className="text-text-secondary">
+      <h3 className="text-xl font-semibold text-dark">Review Your Resume</h3>
+      <p className="text-secondary">
         Please review the information you've entered. You can go back to make
         changes if needed.
       </p>
 
-      <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-        <h4 className="text-lg font-medium text-text-light">
-          Personal Information
-        </h4>
+      <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-primary/20">
+        <h4 className="text-lg font-medium text-dark">Personal Information</h4>
         <p>
           <strong>Name:</strong> {resume.personal.name}
         </p>

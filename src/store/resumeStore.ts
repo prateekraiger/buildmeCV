@@ -88,7 +88,7 @@ const initialResumeState: ResumeData = {
     "achievements",
   ],
   template: "modern",
-  accentColor: "#c1121f",
+  accentColor: "#000000",
 };
 
 const useResumeStore = create<ResumeState>()(

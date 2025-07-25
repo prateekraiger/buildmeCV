@@ -1,6 +1,6 @@
-import React, { useState, ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '../../components/UI';
+import React, { useState, ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "../../components/UI";
 
 interface Step {
   id: string;
@@ -21,12 +21,15 @@ const pageVariants = {
 };
 
 const pageTransition = {
-  type: 'tween',
-  ease: 'anticipate',
+  type: "tween",
+  ease: "anticipate",
   duration: 0.5,
 };
 
-export const MultiStepForm: React.FC<MultiStepFormProps> = ({ steps, onFinish }) => {
+export const MultiStepForm: React.FC<MultiStepFormProps> = ({
+  steps,
+  onFinish,
+}) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const currentStep = steps[currentStepIndex];
 
@@ -47,11 +50,11 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ steps, onFinish })
   return (
     <div className="multi-step-form">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-text-light flex items-center">
+        <h2 className="text-2xl font-bold text-dark flex items-center">
           {currentStep.icon}
           <span className="ml-2">{currentStep.title}</span>
         </h2>
-        <div className="text-sm text-text-secondary">
+        <div className="text-sm text-secondary">
           Step {currentStepIndex + 1} of {steps.length}
         </div>
       </div>
@@ -65,9 +68,7 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ steps, onFinish })
           variants={pageVariants}
           transition={pageTransition}
         >
-          <div className="form-content">
-          {currentStep.content}
-          </div>
+          <div className="form-content">{currentStep.content}</div>
         </motion.div>
       </AnimatePresence>
 
@@ -76,7 +77,7 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ steps, onFinish })
           Previous
         </Button>
         <Button onClick={handleNext}>
-          {currentStepIndex === steps.length - 1 ? 'Finish' : 'Next'}
+          {currentStepIndex === steps.length - 1 ? "Finish" : "Next"}
         </Button>
       </div>
     </div>
