@@ -49,6 +49,26 @@ const Header: React.FC = () => {
               >
                 Builder
               </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `${
+                    isActive ? activeLinkClass : inactiveLinkClass
+                  } px-3 py-2 rounded-md text-sm font-medium transition-colors`
+                }
+              >
+                About
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `${
+                    isActive ? activeLinkClass : inactiveLinkClass
+                  } px-3 py-2 rounded-md text-sm font-medium transition-colors`
+                }
+              >
+                Contact
+              </NavLink>
             </div>
           </div>
 
@@ -99,6 +119,28 @@ const Header: React.FC = () => {
                     onClick={closeMobileMenu}
                   >
                     Builder
+                  </NavLink>
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? activeLinkClass : inactiveLinkClass
+                      } block px-3 py-2 rounded-md text-base font-medium transition-colors`
+                    }
+                    onClick={closeMobileMenu}
+                  >
+                    About
+                  </NavLink>
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? activeLinkClass : inactiveLinkClass
+                      } block px-3 py-2 rounded-md text-base font-medium transition-colors`
+                    }
+                    onClick={closeMobileMenu}
+                  >
+                    Contact
                   </NavLink>
                 </div>
               </motion.div>
