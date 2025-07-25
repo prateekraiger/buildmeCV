@@ -1,0 +1,170 @@
+import React, { useMemo, useEffect } from "react";
+import useResumeStore from "../store/resumeStore";
+import { Progress } from "../components/UI";
+import { PersonalInfoForm } from "../components/builder/forms/PersonalInfoForm";
+import { ExperienceForm } from "../components/builder/forms/ExperienceForm";
+import { EducationForm } from "../components/builder/forms/EducationForm";
+import { ProjectsForm } from "../components/builder/forms/ProjectsForm";
+import { SimpleListForm } from "../components/builder/forms/SimpleListForm";
+import { SummaryForm } from "../components/builder/forms/SummaryForm";
+import { LivePreview } from "../components/builder/preview/LivePreview";
+
+import {
+  AcademicCapIcon,
+  BriefcaseIcon,
+  LightBulbIcon,
+  SparklesIcon,
+  TrophyIcon,
+  UserCircleIcon,
+  InformationCircleIcon,
+  RectangleGroupIcon,
+} from "../components/Icons";
+import { ImportExport } from "../components/builder/ImportExport";
+import { TemplateSelector } from "../components/builder/design/TemplateSelector";
+import { AccentColorPicker } from "../components/builder/design/AccentColorPicker";
+import { motion, Transition } from "framer-motion";
+import { MultiStepForm } from "../components/builder/MultiStepForm";
+import { SummaryDisplay } from "../components/builder/SummaryDisplay";
+
+const pageVariants = {
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 },
+};
+
+const pageTransition: Transition = {
+  type: "tween",
+  ease: "anticipate",
+  duration: 0.5,
+};
+
+const BuilderPage: React.FC = () => {
+  const { resume, getCompletion } = useResumeStore();
+  const completion = useMemo(() => getCompletion(), [resume, getCompletion]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--accent-color",
+      resume.accentColor
+    );
+  }, [resume.accentColor]);
+
+  const steps = [
+    {
+      id: "personalInfo",
+      title: "Personal Information",
+      icon: <UserCircleIcon className="w-6 h-6 text-accent" />,
+      content: <PersonalInfoForm />,
+    },
+    {
+      id: "summary",
+      title: "Professional Summary",
+      icon: <InformationCircleIcon className="w-6 h-6 text-accent" />,
+      content: <SummaryForm />,
+    },
+    {
+      id: "experience",
+      title: "Work Experience",
+      icon: <BriefcaseIcon className="w-6 h-6 text-accent" />,
+      content: <ExperienceForm />,
+    },
+    {
+      id: "education",
+      title: "Education",
+      icon: <AcademicCapIcon className="w-6 h-6 text-accent" />,
+      content: <EducationForm />,
+    },
+    {
+      id: "projects",
+      title: "Projects",
+      icon: <LightBulbIcon className="w-6 h-6 text-accent" />,
+      content: <ProjectsForm />,
+    },
+    {
+      id: "skills",
+      title: "Skills",
+      icon: <SparklesIcon className="w-6 h-6 text-accent" />,
+      content: (
+        <SimpleListForm
+          list={resume.skills}
+          listKey="skills"
+          label="Skill"
+          suggestable
+        />
+      ),
+    },
+    {
+      id: "achievements",
+      title: "Achievements",
+      icon: <TrophyIcon className="w-6 h-6 text-accent" />,
+      content: (
+        <SimpleListForm
+          list={resume.achievements}
+          listKey="achievements"
+          label="Achievement"
+        />
+      ),
+    },
+    {
+      id: "designOptions",
+      title: "Design & Options",
+      icon: <RectangleGroupIcon className="w-6 h-6 text-accent" />,
+      content: (
+        <div className="space-y-6">
+          <TemplateSelector />
+          <AccentColorPicker />
+          <ImportExport />
+        </div>
+      ),
+    },
+    {
+      id: "review",
+      title: "Review & Download",
+      icon: <InformationCircleIcon className="w-6 h-6 text-accent" />,
+      content: <SummaryDisplay />,
+    },
+  ];
+
+  const handleFinish = () => {
+    // This function will be called when the user clicks 'Finish' on the last step.
+    // You can add any final actions here, e.g., showing a success message or navigating.
+    console.log("Multi-step form finished!");
+  };
+
+  return (
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left: Form */}
+        <div className="lg:pr-4">
+          <div className="sticky top-20 z-10 bg-primary/80 backdrop-blur-sm p-4 rounded-lg -mx-4">
+            <Progress value={completion} />
+          </div>
+          <div className="mt-6">
+            <MultiStepForm steps={steps} onFinish={handleFinish} />
+          </div>
+        </div>
+
+        {/* Right: Preview */}
+        <div className="lg:pl-4">
+          <div className="sticky top-20">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-text-light">
+                Live Preview
+              </h2>
+              {/* DownloadButton is now inside SummaryDisplay */}
+            </div>
+            <LivePreview />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default BuilderPage;
