@@ -6,8 +6,17 @@ export interface PersonalInfo {
   location: string;
   linkedin: string;
   portfolio: string;
-  github?: string;
+  github: string;
   website?: string;
+  // New sections for portfolio and GitHub
+  portfolioSection?: {
+    url: string;
+    description?: string;
+  };
+  githubSection?: {
+    url: string;
+    description?: string;
+  };
 }
 
 export interface Experience {
