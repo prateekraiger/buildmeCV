@@ -7,7 +7,8 @@ import {
   SwatchIcon,
   ArrowPathIcon,
 } from "../components/Icons";
-import { motion, Transition } from "framer-motion";
+import { motion } from "framer-motion";
+import { HeroSection } from "@/components/blocks/hero-section-1";
 
 const TemplatePreviewCard: React.FC<{
   title: string;
@@ -39,65 +40,11 @@ const Feature: React.FC<{
   </div>
 );
 
-const pageVariants = {
-  initial: { opacity: 0, y: 20 },
-  in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -20 },
-};
-
-const pageTransition: Transition = {
-  type: "tween",
-  ease: "anticipate",
-  duration: 0.5,
-};
-
-const heroContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
-};
-
-
-
 const HomePage: React.FC = () => {
   return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
+    <>
+      <HeroSection />
       <div className="space-y-24 sm:space-y-32 my-12">
-        {/* Hero Section */}
-        <motion.section
-          variants={heroContainerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-text-light tracking-tight">
-              Craft a <span className="text-accent">Killer Resume</span>,<br />
-              Land Your Dream Job.
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-secondary">
-              Build a professional, AI-powered resume in minutes. Stand out from
-              the crowd with stunning, customizable templates.
-            </p>
-            <div className="mt-8">
-              <Link to="/builder">
-                <Button
-                  variant="primary"
-                  className="px-8 py-4 text-lg font-bold shadow-2xl !text-white"
-                >
-                  Start Building for Free
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </motion.section>
         {/* Template Showcase */}
         <motion.section
           initial={{ opacity: 0 }}
@@ -202,7 +149,7 @@ const HomePage: React.FC = () => {
                   ></div>
                   <div
                     className="h-1 w-5/6 rounded-full"
-                    style={{ backgroundColor: "#c1121f50" }}
+                    style={{ backgroundColor: "#c121f50" }}
                   ></div>
                 </div>
               </TemplatePreviewCard>
@@ -253,7 +200,7 @@ const HomePage: React.FC = () => {
           </div>
         </motion.section>
       </div>
-    </motion.div>
+    </>
   );
 };
 

@@ -1,6 +1,4 @@
-import type { Config } from "tailwindcss";
-import { BRAND_COLORS } from "./src/constants";
-
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -74,4 +72,4 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
