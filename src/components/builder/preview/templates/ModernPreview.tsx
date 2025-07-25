@@ -172,7 +172,8 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
                 href={personal.portfolioSection.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline text-blue-600"
+                className="underline font-semibold"
+                style={{ color: accentColor }}
               >
                 Portfolio
               </a>
@@ -187,7 +188,8 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
                 href={personal.githubSection.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline text-blue-600"
+                className="underline font-semibold"
+                style={{ color: accentColor }}
               >
                 GitHub
               </a>

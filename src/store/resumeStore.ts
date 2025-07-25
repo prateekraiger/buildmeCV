@@ -28,6 +28,16 @@ const initialResumeState: ResumeData = {
     location: "San Francisco, CA",
     linkedin: "linkedin.com/in/janedoe",
     portfolio: "github.com/janedoe",
+    github: "github.com/janedoe",
+    website: "janedoe.com",
+    portfolioSection: {
+      url: "https://janedoe.com",
+      description: "My personal portfolio website.",
+    },
+    githubSection: {
+      url: "https://github.com/janedoe",
+      description: "My GitHub profile.",
+    },
   },
   summary:
     "A passionate and driven software engineer with a strong foundation in computer science and a dedication to creating elegant, user-friendly applications. Eager to apply my skills in a challenging and collaborative environment to solve real-world problems.",

@@ -58,21 +58,22 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "px-4 py-2 rounded-md font-semibold text-sm shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary transition-colors duration-150 ease-in-out inline-flex items-center justify-center gap-2";
+    "px-4 py-2 rounded-lg font-semibold text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary transition-colors duration-150 ease-in-out inline-flex items-center justify-center gap-2 backdrop-blur bg-white/30 border border-gray-200/40";
 
   const variantClasses = {
-    primary: "bg-accent text-white hover:bg-accent-dark focus:ring-accent",
+    primary: "text-gray-900 bg-accent/80 hover:bg-accent focus:ring-accent",
     secondary:
-      "bg-primary border border-secondary/50 text-secondary hover:bg-secondary/20 hover:text-text-light focus:ring-accent",
-    danger:
-      "bg-accent-dark text-text-light hover:bg-opacity-80 focus:ring-accent",
+      "text-gray-900 bg-white/40 border border-secondary/50 hover:bg-secondary/10 focus:ring-accent",
+    danger: "text-white bg-red-600/80 hover:bg-red-700 focus:ring-red-600",
   };
 
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className={`${baseClasses} ${variantClasses[variant]}`}
+      className={`${baseClasses} ${variantClasses[variant]} ${
+        props.className || ""
+      }`}
       {...props}
     >
       {children}
@@ -109,12 +110,18 @@ export const Progress: React.FC<ProgressProps> = ({ value }) => {
         </span>
       </div>
       <div className="w-full bg-primary rounded-full h-2.5 border border-secondary/20 overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${safeValue}%` }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="bg-gradient-to-r from-accent to-accent-dark h-2.5 rounded-full"
-        />
+        <div className="bg-gradient-to-r from-accent to-accent-dark h-2.5 rounded-full">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${safeValue}%` }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
+              height: "100%",
+              background: "inherit",
+              borderRadius: "inherit",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

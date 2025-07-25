@@ -213,13 +213,13 @@
 
 /* Selection styles */
 ::selection {
-    background-color: var(--color-accent, #c1121f);
-    color: white;
+    background-color: #14b8a6;
+    color: #fff;
 }
 
 ::-moz-selection {
-    background-color: var(--color-accent, #c1121f);
-    color: white;
+    background-color: #14b8a6;
+    color: #fff;
 }
 
 /* Custom properties for dynamic theming */

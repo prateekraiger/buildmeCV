@@ -139,27 +139,30 @@ const BuilderPage: React.FC = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left: Form */}
-        <div className="lg:pr-4">
-          <div className="sticky top-20 z-10 bg-primary/80 backdrop-blur-sm p-4 rounded-lg -mx-4">
-            <Progress value={completion} />
-          </div>
-          <div className="mt-6">
-            <MultiStepForm steps={steps} onFinish={handleFinish} />
-          </div>
-        </div>
-
-        {/* Right: Preview */}
-        <div className="lg:pl-4">
-          <div className="sticky top-20">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-text-light">
-                Live Preview
-              </h2>
-              {/* DownloadButton is now inside SummaryDisplay */}
+      <div className="relative min-h-screen w-full text-gray-900">
+        {/* Background grid */}
+        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]" />
+        {/* Main layout */}
+        <div className="container mx-auto py-10 px-2 sm:px-6 lg:px-12 flex flex-col lg:flex-row gap-10">
+          {/* Left: Form */}
+          <div className="flex-1 max-w-xl">
+            <div className="sticky top-20 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+              <Progress value={completion} />
             </div>
-            <LivePreview />
+            <div className="mt-6">
+              <MultiStepForm steps={steps} onFinish={handleFinish} />
+            </div>
+          </div>
+          {/* Right: Preview */}
+          <div className="flex-1 flex flex-col items-center">
+            <div className="sticky top-20 w-full">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Live Preview
+                </h2>
+              </div>
+              <LivePreview />
+            </div>
           </div>
         </div>
       </div>

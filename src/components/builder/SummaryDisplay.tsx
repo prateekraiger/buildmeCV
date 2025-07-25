@@ -13,7 +13,8 @@ export const SummaryDisplay: React.FC = () => {
         changes if needed.
       </p>
 
-      <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-primary/20">
+      {/* Personal Information */}
+      <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
         <h4 className="text-lg font-medium text-dark">Personal Information</h4>
         <p>
           <strong>Name:</strong> {resume.personal.name}
@@ -35,20 +36,20 @@ export const SummaryDisplay: React.FC = () => {
         </p>
       </div>
 
+      {/* Professional Summary */}
       {resume.summary && (
-        <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-          <h4 className="text-lg font-medium text-text-light">
+        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
+          <h4 className="text-lg font-medium text-dark">
             Professional Summary
           </h4>
           <p>{resume.summary}</p>
         </div>
       )}
 
+      {/* Work Experience */}
       {resume.experience.length > 0 && (
-        <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-          <h4 className="text-lg font-medium text-text-light">
-            Work Experience
-          </h4>
+        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
+          <h4 className="text-lg font-medium text-dark">Work Experience</h4>
           {resume.experience.map((exp, index) => (
             <div
               key={index}
@@ -61,7 +62,10 @@ export const SummaryDisplay: React.FC = () => {
                 {exp.startDate} - {exp.endDate}
               </p>
               <ul className="list-disc list-inside text-sm">
-                {exp.description.map((desc, i) => (
+                {(Array.isArray(exp.description)
+                  ? exp.description
+                  : [exp.description]
+                ).map((desc, i) => (
                   <li key={i}>{desc}</li>
                 ))}
               </ul>
@@ -70,9 +74,10 @@ export const SummaryDisplay: React.FC = () => {
         </div>
       )}
 
+      {/* Education */}
       {resume.education.length > 0 && (
-        <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-          <h4 className="text-lg font-medium text-text-light">Education</h4>
+        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
+          <h4 className="text-lg font-medium text-dark">Education</h4>
           {resume.education.map((edu, index) => (
             <div
               key={index}
@@ -89,9 +94,10 @@ export const SummaryDisplay: React.FC = () => {
         </div>
       )}
 
+      {/* Projects */}
       {resume.projects.length > 0 && (
-        <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-          <h4 className="text-lg font-medium text-text-light">Projects</h4>
+        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
+          <h4 className="text-lg font-medium text-dark">Projects</h4>
           {resume.projects.map((proj, index) => (
             <div
               key={index}
@@ -100,22 +106,28 @@ export const SummaryDisplay: React.FC = () => {
               <p>
                 <strong>{proj.title}</strong>
               </p>
-              <p>{proj.description}</p>
+              <p>
+                {Array.isArray(proj.description)
+                  ? proj.description.join(", ")
+                  : proj.description}
+              </p>
             </div>
           ))}
         </div>
       )}
 
+      {/* Skills */}
       {resume.skills.length > 0 && (
-        <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-          <h4 className="text-lg font-medium text-text-light">Skills</h4>
+        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
+          <h4 className="text-lg font-medium text-dark">Skills</h4>
           <p>{resume.skills.map((s) => s.name).join(", ")}</p>
         </div>
       )}
 
+      {/* Achievements */}
       {resume.achievements.length > 0 && (
-        <div className="bg-background-light p-4 rounded-lg shadow-inner space-y-2">
-          <h4 className="text-lg font-medium text-text-light">Achievements</h4>
+        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
+          <h4 className="text-lg font-medium text-dark">Achievements</h4>
           <ul className="list-disc list-inside text-sm">
             {resume.achievements.map((ach, index) => (
               <li key={index}>{ach.name}</li>

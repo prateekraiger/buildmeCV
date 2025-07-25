@@ -71,37 +71,38 @@ const Header: React.FC = () => {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-secondary/20"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `${
-                      isActive ? activeLinkClass : inactiveLinkClass
-                    } block px-3 py-2 rounded-md text-base font-medium transition-colors`
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Home
-                </NavLink>
-                <NavLink
-                  to="/builder"
-                  className={({ isActive }) =>
-                    `${
-                      isActive ? activeLinkClass : inactiveLinkClass
-                    } block px-3 py-2 rounded-md text-base font-medium transition-colors`
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Builder
-                </NavLink>
-              </div>
-            </motion.div>
+            <div className="md:hidden border-t border-secondary/20">
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                <div className="px-2 pt-2 pb-3 space-y-1">
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? activeLinkClass : inactiveLinkClass
+                      } block px-3 py-2 rounded-md text-base font-medium transition-colors`
+                    }
+                    onClick={closeMobileMenu}
+                  >
+                    Home
+                  </NavLink>
+                  <NavLink
+                    to="/builder"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? activeLinkClass : inactiveLinkClass
+                      } block px-3 py-2 rounded-md text-base font-medium transition-colors`
+                    }
+                    onClick={closeMobileMenu}
+                  >
+                    Builder
+                  </NavLink>
+                </div>
+              </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </nav>
@@ -121,7 +122,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-primary">
+    <div className="min-h-screen flex flex-col relative text-gray-900">
+      {/* Grid background for the whole site */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]" />
       <Header />
       <main className="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
         {children}
