@@ -44,7 +44,7 @@ export const Textarea: React.FC<TextareaProps> = ({ label, id, ...props }) => (
 );
 
 interface ButtonProps extends HTMLMotionProps<"button"> {
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "primary" | "secondary" | "danger" | "add";
   children: React.ReactNode;
   disabled?: boolean;
   className?: string;
@@ -62,11 +62,12 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantClasses = {
     primary:
-      "bg-accent text-dark hover:bg-accentDark focus:ring-accent transform hover:scale-105 active:scale-95",
+      "bg-accent text-dark hover:bg-accentDark focus:ring-accent border-2 border-black/20 hover:border-black/40 transform hover:scale-105 active:scale-95",
     secondary:
-      "bg-primary text-dark hover:bg-secondary focus:ring-secondary border-2 border-primary/30 transform hover:scale-105 active:scale-95",
+      "bg-primary text-dark hover:bg-secondary focus:ring-secondary border-2 border-black/30 hover:border-black/50 transform hover:scale-105 active:scale-95",
+    add: "bg-white text-dark hover:bg-gray-50 focus:ring-primary border-2 border-black/40 hover:border-black/60 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg",
     danger:
-      "bg-red-600 text-white hover:bg-red-700 focus:ring-red-600 transform hover:scale-105 active:scale-95",
+      "bg-red-600 text-white hover:bg-red-700 focus:ring-red-600 border-2 border-black/30 hover:border-black/50 transform hover:scale-105 active:scale-95",
   };
 
   return (
@@ -112,14 +113,19 @@ export const Progress: React.FC<ProgressProps> = ({ value }) => {
         </span>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-4 sm:h-5 border-2 border-primary/20 overflow-hidden shadow-inner">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${safeValue}%` }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="bg-gradient-to-r from-accent to-accentDark h-full rounded-full shadow-sm relative overflow-hidden"
-        >
+        <div className="bg-gradient-to-r from-accent to-accentDark h-full rounded-full shadow-sm relative overflow-hidden">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${safeValue}%` }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            style={{
+              height: "100%",
+              background: "inherit",
+              borderRadius: "inherit",
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
-        </motion.div>
+        </div>
       </div>
       <div className="text-sm font-medium text-black text-center progress-text">
         {safeValue < 30 && "Just getting started! 🚀"}

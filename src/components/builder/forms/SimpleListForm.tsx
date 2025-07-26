@@ -90,7 +90,7 @@ export const SimpleListForm: React.FC<SimpleListFormProps> = ({
           />
         </div>
         <Button
-          variant="secondary"
+          variant="add"
           onClick={handleAdd}
           aria-label={`Add ${label}`}
           className="h-[42px]"
@@ -99,7 +99,7 @@ export const SimpleListForm: React.FC<SimpleListFormProps> = ({
         </Button>
         {suggestable && (
           <Button
-            variant="secondary"
+            variant="add"
             onClick={handleSuggestSkills}
             disabled={isLoading}
             aria-label="Suggest skills with AI"

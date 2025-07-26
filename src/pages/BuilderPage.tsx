@@ -23,7 +23,7 @@ import {
 import { ImportExport } from "../components/builder/ImportExport";
 import { TemplateSelector } from "../components/builder/design/TemplateSelector";
 import { AccentColorPicker } from "../components/builder/design/AccentColorPicker";
-import { motion, Transition } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import { MultiStepForm } from "../components/builder/MultiStepForm";
 import { SummaryDisplay } from "../components/builder/SummaryDisplay";
 
@@ -33,7 +33,7 @@ const pageVariants = {
   out: { opacity: 0 },
 };
 
-const pageTransition: Transition = {
+const pageTransition: MotionProps["transition"] = {
   type: "tween",
   ease: "anticipate",
   duration: 0.5,
@@ -133,53 +133,54 @@ const BuilderPage: React.FC = () => {
   };
 
   return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-      className="builder-page min-h-screen w-full"
-    >
-      <div className="w-full full-height-layout">
-        {/* Main layout - Full width responsive grid */}
-        <div className="w-full h-full px-2 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
-          <div className="builder-grid grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 h-full">
-            {/* Left: Form Section - Larger and more spacious */}
-            <div className="w-full flex flex-col min-h-full">
-              {/* Progress Bar - Sticky and prominent */}
-              <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
-                <div className="text-lg sm:text-xl font-semibold text-dark mb-4">
-                  Resume Progress
+    <div className="builder-page min-h-screen w-screen max-w-none overflow-x-hidden">
+      <motion.div
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
+        <div className="w-full full-height-layout">
+          {/* Main layout - Full viewport width utilization with 16px margins */}
+          <div className="w-screen h-full p-4 py-2 sm:py-3 lg:py-4">
+            <div className="builder-grid grid grid-cols-1 lg:grid-cols-2 gap-4 h-full max-w-none w-full">
+              {/* Left: Form Section - Full width utilization with margins */}
+              <div className="w-full flex flex-col min-h-full form-section m-4">
+                {/* Progress Bar - Sticky and prominent */}
+                <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
+                  <div className="text-lg sm:text-xl font-semibold text-dark mb-4">
+                    Resume Progress
+                  </div>
+                  <Progress value={completion} />
                 </div>
-                <Progress value={completion} />
+
+                {/* Form Content - Larger container with better spacing */}
+                <div className="builder-section flex-1 bg-white/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg border border-primary/20">
+                  <MultiStepForm steps={steps} onFinish={handleFinish} />
+                </div>
               </div>
 
-              {/* Form Content - Larger container with better spacing */}
-              <div className="builder-section flex-1 bg-white/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg border border-primary/20">
-                <MultiStepForm steps={steps} onFinish={handleFinish} />
-              </div>
-            </div>
+              {/* Right: Preview Section - Full width utilization with margins */}
+              <div className="w-full flex flex-col min-h-full preview-section m-4">
+                {/* Preview Header - More prominent */}
+                <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark flex items-center">
+                    <span className="mr-3 text-accent">👀</span>
+                    Live Preview
+                  </h2>
+                  <p className="text-black font-medium mt-2 text-sm sm:text-base preview-description">
+                    See your resume update in real-time
+                  </p>
+                </div>
 
-            {/* Right: Preview Section - Larger and no scrollbar */}
-            <div className="w-full flex flex-col min-h-full">
-              {/* Preview Header - More prominent */}
-              <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark flex items-center">
-                  <span className="mr-3 text-accent">👀</span>
-                  Live Preview
-                </h2>
-                <p className="text-black font-medium mt-2 text-sm sm:text-base preview-description">
-                  See your resume update in real-time
-                </p>
-              </div>
-
-              {/* Preview Content - Bigger and full height, no scrollbar */}
-              <div className="builder-section flex-1 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-primary/20 overflow-hidden">
-                <div className="preview-container w-full h-full p-4 sm:p-6 lg:p-8">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-full max-w-full h-full min-h-[600px] sm:min-h-[700px] lg:min-h-[800px]">
-                      <LivePreview />
+                {/* Preview Content - Much bigger and wider, full height, no scrollbar */}
+                <div className="builder-section flex-1 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-primary/20 overflow-hidden">
+                  <div className="preview-container w-full h-full p-2 sm:p-3 lg:p-4">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="w-full max-w-none h-full min-h-[600px] sm:min-h-[700px] lg:min-h-[800px] xl:min-h-[900px]">
+                        <LivePreview />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -187,8 +188,8 @@ const BuilderPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
