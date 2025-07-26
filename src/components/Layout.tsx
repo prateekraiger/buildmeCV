@@ -3,16 +3,10 @@ import { useLocation } from "react-router-dom";
 import { HeroSection } from "./blocks/hero-section-1";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from "./Icons";
+import { Github, Twitter } from 'lucide-react';
 
 import Navbar from './Navbar';
-
-const Footer: React.FC = () => (
-  <footer className="bg-dark border-t border-secondary/20 mt-auto">
-    <div className="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-primary text-sm">
-      &copy; {new Date().getFullYear()} BuildMeCV. All Rights Reserved.
-    </div>
-  </footer>
-);
+import { Footer } from './ui/footer';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -28,7 +22,32 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
       <main className="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
         {children}
       </main>
-      <Footer />
+      <Footer
+        logo={<img src="/logo.png" alt="buildmeCV logo" className="h-10 w-10" />}
+        brandName="buildmeCV"
+        socialLinks={[
+          {
+            icon: <Twitter className="h-5 w-5" />,
+            href: "https://twitter.com",
+            label: "Twitter",
+          },
+          {
+            icon: <Github className="h-5 w-5" />,
+            href: "https://github.com",
+            label: "GitHub",
+          },
+        ]}
+        mainLinks={[
+          { href: "/", label: "Home" },
+          { href: "/about", label: "About" },
+          { href: "/contact", label: "Contact" },
+        ]}
+        legalLinks={[]}
+        copyright={{
+          text: `© ${new Date().getFullYear()} buildmeCV`,
+          license: "All rights reserved",
+        }}
+      />
     </div>
   );
 

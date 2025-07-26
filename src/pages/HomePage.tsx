@@ -20,7 +20,7 @@ const Feature: React.FC<{ icon: React.ReactNode, title: string, children: React.
         </div>
         <div>
             <h3 className="text-lg font-semibold text-dark">{title}</h3>
-            <p className="mt-1 text-secondary">{children}</p>
+            <p className="mt-1 text-gray-700">{children}</p>
         </div>
     </div>
 );
@@ -82,7 +82,7 @@ const HomePage: React.FC = () => {
             Personalize your resume with a custom accent color to make your resume uniquely yours while maintaining a professional look.
           </Feature>
            <Feature icon={<SparklesIcon className="w-6 h-6" />} title="AI-Powered Enhancement">
-            <span className="text-slate-700 dark:text-slate-300">Let our AI assistant rewrite your job descriptions and suggest relevant skills to make your accomplishments shine.</span>
+            <span className="text-gray-700 dark:text-slate-300">Let our AI assistant rewrite your job descriptions and suggest relevant skills to make your accomplishments shine.</span>
           </Feature>
           <Feature icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.667 0l3.181-3.183m-4.991l-3.182-3.182a8.25 8.25 0 0 0-11.667 0L2.985 16.5" /></svg>} title="Persistent Storage">
             Your work is saved automatically to your browser. Close the tab and come back anytime to continue where you left off.

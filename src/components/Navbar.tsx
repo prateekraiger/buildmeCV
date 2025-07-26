@@ -33,8 +33,9 @@ const Navbar = () => {
                             <Link
                                 to="/"
                                 aria-label="home"
-                                className="flex items-center space-x-2">
+                                className="flex items-center">
                                 <Logo />
+                                <span className="font-bold text-xl tracking-tight text-primary ml-[-0.5rem]">buildmeCV</span>
                             </Link>
 
                             <button
@@ -75,7 +76,11 @@ const Navbar = () => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                {/* Add buttons as needed */}
+                                <Link to="/builder">
+                                    <button className="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md">
+                                        Get Started
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
