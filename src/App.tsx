@@ -3,7 +3,6 @@ import HomePage from "./pages/HomePage";
 import BuilderPage from "./pages/BuilderPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import { Layout } from "./components/Layout";
 import { ToastProvider } from "./components/Toast";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Font } from '@react-pdf/renderer';
@@ -25,6 +24,8 @@ Font.register({
         { src: '/fonts/Tomorrow/Tomorrow-Bold.ttf', fontWeight: 'bold' },
     ]
 });
+
+import { Layout } from './components/Layout';
 
 function App() {
   const location = useLocation();

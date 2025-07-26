@@ -8,6 +8,7 @@ import { ProjectsForm } from "../components/builder/forms/ProjectsForm";
 import { SimpleListForm } from "../components/builder/forms/SimpleListForm";
 import { SummaryForm } from "../components/builder/forms/SummaryForm";
 import { LivePreview } from "../components/builder/preview/LivePreview";
+// Remove: import { HeroSection } from "../components/blocks/hero-section-1";
 
 import {
   AcademicCapIcon,
@@ -139,9 +140,8 @@ const BuilderPage: React.FC = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
+      {/* Remove: <HeroSection /> */}
       <div className="relative min-h-screen w-full text-foreground">
-        {/* Background grid */}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-background" />
         {/* Main layout */}
         <div className="container mx-auto py-10 px-2 sm:px-6 lg:px-12 flex flex-col lg:flex-row gap-10">
           {/* Left: Form */}

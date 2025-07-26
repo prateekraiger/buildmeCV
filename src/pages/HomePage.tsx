@@ -1,43 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card } from '../components/UI';
+import { Card } from '../components/UI';
 import { SparklesIcon, RectangleGroupIcon, SwatchIcon } from '../components/Icons';
-
-const headlines = [
-  "an AI-Powered Resume",
-  "a Standout First Impression",
-  "Your Next Career Move",
-];
-
-const AnimatedHeadline: React.FC = () => {
-    const [index, setIndex] = useState(0);
-    const [subIndex, setSubIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    useEffect(() => {
-        if (isDeleting) {
-            if (subIndex === 0) {
-                setIsDeleting(false);
-                                  setIndex((prev) => (prev + 1) % headlines.length);
-            } else {
-                setTimeout(() => setSubIndex((prev) => prev - 1), 75);
-            }
-        } else {
-            if (subIndex === headlines[index].length) {
-                setTimeout(() => setIsDeleting(true), 2000);
-            } else {
-                setTimeout(() => setSubIndex((prev) => prev + 1), 100);
-            }
-        }
-    }, [subIndex, isDeleting, index]);
-
-    return (
-        <span className="text-accent min-h-[72px] sm:min-h-[84px] md:min-h-[96px]">
-            {headlines[index].substring(0, subIndex)}
-            <span className="animate-ping">|</span>
-        </span>
-    );
-};
+import { HeroSection } from '../components/blocks/hero-section-1';
 
 const TemplatePreviewCard: React.FC<{ title: string, children: React.ReactNode }> = ({ title, children }) => (
     <Card className="p-2 bg-primary/30 backdrop-blur-sm">
@@ -63,25 +28,8 @@ const Feature: React.FC<{ icon: React.ReactNode, title: string, children: React.
 const HomePage: React.FC = () => {
   return (
     <div className="space-y-24 sm:space-y-32 my-12">
-      {/* Hero Section */}
-      <section className="text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-dark tracking-tight leading-tight">
-          Build <br className="sm:hidden" />
-          <AnimatedHeadline />
-        </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl text-secondary">
-          Craft a professional, ATS-friendly resume in minutes. Leverage AI, choose from modern templates, and land your dream job.
-        </p>
-        <div className="mt-8">
-          <Link to="/builder">
-            <Button variant="primary" className="px-8 py-4 text-lg font-bold shadow-2xl transform hover:scale-105">
-              Start Building for Free
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Template Showcase */}
+      <HeroSection />
+        {/* Template Showcase */}
       <section className="max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-center text-dark mb-8">Choose Your Style</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -134,7 +82,7 @@ const HomePage: React.FC = () => {
             Personalize your resume with a custom accent color to make your resume uniquely yours while maintaining a professional look.
           </Feature>
            <Feature icon={<SparklesIcon className="w-6 h-6" />} title="AI-Powered Enhancement">
-            Let our AI assistant rewrite your job descriptions and suggest relevant skills to make your accomplishments shine.
+            <span className="text-slate-700 dark:text-slate-300">Let our AI assistant rewrite your job descriptions and suggest relevant skills to make your accomplishments shine.</span>
           </Feature>
           <Feature icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.667 0l3.181-3.183m-4.991l-3.182-3.182a8.25 8.25 0 0 0-11.667 0L2.985 16.5" /></svg>} title="Persistent Storage">
             Your work is saved automatically to your browser. Close the tab and come back anytime to continue where you left off.
