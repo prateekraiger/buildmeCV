@@ -6,17 +6,17 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input: React.FC<InputProps> = ({ label, id, ...props }) => (
-  <div>
+  <div className="space-y-2">
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-foreground mb-1"
+      className="block text-base sm:text-lg font-medium text-dark mb-2"
     >
       {label}
     </label>
     <input
       id={id}
       {...props}
-      className="w-full bg-white border border-primary text-foreground rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition"
+      className="w-full bg-white border-2 border-primary text-dark rounded-lg shadow-sm px-4 py-3 sm:px-5 sm:py-4 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200"
     />
   </div>
 );
@@ -27,18 +27,18 @@ interface TextareaProps
 }
 
 export const Textarea: React.FC<TextareaProps> = ({ label, id, ...props }) => (
-  <div>
+  <div className="space-y-2">
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-foreground mb-1"
+      className="block text-base sm:text-lg font-medium text-dark mb-2"
     >
       {label}
     </label>
     <textarea
       id={id}
       {...props}
-      className="w-full bg-white border border-primary text-foreground rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition"
-      rows={4}
+      className="w-full bg-white border-2 border-primary text-dark rounded-lg shadow-sm px-4 py-3 sm:px-5 sm:py-4 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all duration-200 resize-none"
+      rows={5}
     />
   </div>
 );
@@ -58,19 +58,21 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "px-4 py-2 rounded-lg font-semibold text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-150 ease-in-out inline-flex items-center justify-center gap-2";
+    "px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-semibold text-base sm:text-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 ease-in-out inline-flex items-center justify-center gap-3 min-h-[48px] sm:min-h-[56px]";
 
   const variantClasses = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary",
+    primary:
+      "bg-accent text-dark hover:bg-accentDark focus:ring-accent transform hover:scale-105 active:scale-95",
     secondary:
-      "bg-white border border-primary text-foreground hover:bg-gray-100 focus:ring-primary",
-    danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-600",
+      "bg-primary text-dark hover:bg-secondary focus:ring-secondary border-2 border-primary/30 transform hover:scale-105 active:scale-95",
+    danger:
+      "bg-red-600 text-white hover:bg-red-700 focus:ring-red-600 transform hover:scale-105 active:scale-95",
   };
 
   return (
     <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className={`${baseClasses} ${variantClasses[variant]} ${
         props.className || ""
       }`}
@@ -88,7 +90,7 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = ({ children, className }) => (
   <div
-    className={`bg-white border border-primary rounded-lg shadow-lg p-4 sm:p-6 ${className}`}
+    className={`bg-white border-2 border-primary/20 rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 transition-all duration-200 hover:shadow-2xl hover:border-primary/30 ${className}`}
   >
     {children}
   </div>
@@ -100,28 +102,30 @@ interface ProgressProps {
 export const Progress: React.FC<ProgressProps> = ({ value }) => {
   const safeValue = Math.max(0, Math.min(100, value));
   return (
-    <div>
-      <div className="flex justify-between mb-1">
-        <span className="text-base font-medium text-secondary">
+    <div className="space-y-3">
+      <div className="flex justify-between items-center">
+        <span className="text-lg sm:text-xl font-semibold text-dark">
           Profile Completion
         </span>
-        <span className="text-sm font-medium text-foreground">
+        <span className="text-lg sm:text-xl font-bold text-accent bg-accent/10 px-3 py-1 rounded-full">
           {safeValue}%
         </span>
       </div>
-      <div className="w-full bg-white rounded-full h-2.5 border border-primary overflow-hidden">
-        <div className="bg-gradient-to-r from-accent to-accent-dark h-2.5 rounded-full">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${safeValue}%` }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            style={{
-              height: "100%",
-              background: "inherit",
-              borderRadius: "inherit",
-            }}
-          />
-        </div>
+      <div className="w-full bg-gray-200 rounded-full h-4 sm:h-5 border-2 border-primary/20 overflow-hidden shadow-inner">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${safeValue}%` }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="bg-gradient-to-r from-accent to-accentDark h-full rounded-full shadow-sm relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+        </motion.div>
+      </div>
+      <div className="text-sm font-medium text-black text-center progress-text">
+        {safeValue < 30 && "Just getting started! 🚀"}
+        {safeValue >= 30 && safeValue < 70 && "Making great progress! 💪"}
+        {safeValue >= 70 && safeValue < 100 && "Almost there! 🎯"}
+        {safeValue === 100 && "Perfect! Ready to download! ✨"}
       </div>
     </div>
   );

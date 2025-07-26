@@ -1,8 +1,8 @@
-'use client';
-import { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
+
 import { motion, Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import React from 'react';
+
 
 type PresetType =
   | 'fade'
@@ -70,14 +70,14 @@ const presetVariants: Record<
     container: defaultContainerVariants,
     item: {
       hidden: { opacity: 0, filter: 'blur(4px)' },
-      visible: { opacity: 1, filter: 'blur(0px)' },
+      visible: { opacity: 1, filter: 'blur(0.001px)' },
     },
   },
   'blur-slide': {
     container: defaultContainerVariants,
     item: {
       hidden: { opacity: 0, filter: 'blur(4px)', y: 20 },
-      visible: { opacity: 1, filter: 'blur(0px)', y: 0 },
+      visible: { opacity: 1, filter: 'blur(0.001px)', y: 0 },
     },
   },
   zoom: {
@@ -154,7 +154,7 @@ function AnimatedGroup({
       initial='hidden'
       animate='visible'
       variants={containerVariants}
-      className={cn(className)}
+      className={className}
     >
       {React.Children.map(children, (child, index) => (
         <motion.div key={index} variants={itemVariants}>

@@ -3,54 +3,53 @@ import { Input } from "../../UI";
 import useResumeStore from "../../../store/resumeStore";
 
 export const PersonalInfoForm: React.FC = () => {
-  const { resume, updateField } = useResumeStore();
-  const data = resume.personal;
+  const { updateField } = useResumeStore();
   const onChange = updateField;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Input
         label="Full Name"
-        value={data.name}
+        value={"Jane Doe"}
         onChange={(e) => onChange("personal.name", e.target.value)}
       />
       <Input
         label="Job Title"
-        value={data.title}
+        value={"Software Engineer"}
         onChange={(e) => onChange("personal.title", e.target.value)}
       />
       <Input
         label="Email"
         type="email"
-        value={data.email}
+        value={"jane.doe@email.com"}
         onChange={(e) => onChange("personal.email", e.target.value)}
       />
       <Input
         label="Phone"
         type="tel"
-        value={data.phone}
+        value={"+91 9870937497"}
         onChange={(e) => onChange("personal.phone", e.target.value)}
       />
       <Input
         label="Location"
-        value={data.location}
+        value={"Bhopal , India"}
         onChange={(e) => onChange("personal.location", e.target.value)}
       />
       <Input
         label="LinkedIn Profile"
-        value={data.linkedin}
+        value={"linkedin.com/in/janedoe"}
         onChange={(e) => onChange("personal.linkedin", e.target.value)}
       />
       <Input
         label="Portfolio URL"
-        value={data.portfolioSection?.url || ""}
+        value={"johnportfolio.com"}
         onChange={(e) =>
           onChange("personal.portfolioSection.url", e.target.value)
         }
       />
       <Input
         label="GitHub URL"
-        value={data.githubSection?.url || ""}
+        value={"github.com/in/janedoe"}
         onChange={(e) => onChange("personal.githubSection.url", e.target.value)}
       />
     </div>

@@ -5,7 +5,8 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 20%;
+    /* Dark Grey */
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -70,7 +71,268 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/*
+Builder Page Specific Styles */
+.builder-page {
+  overflow-x: hidden;
+}
+
+/* Remove scrollbars from preview */
+.preview-container {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+}
+
+.preview-container::-webkit-scrollbar {
+  display: none;
+  /* WebKit */
+}
+
+/* Ensure full height layouts */
+.full-height-layout {
+  min-height: calc(100vh - 2rem);
+}
+
+/* Responsive form styling */
+.form-content input,
+.form-content textarea,
+.form-content select {
+  @apply text-base sm:text-lg p-3 sm:p-4;
+}
+
+.form-content label {
+  @apply text-base sm:text-lg font-medium mb-2;
+}
+
+/* Better button spacing */
+.form-content button {
+  @apply text-base sm:text-lg px-4 py-3 sm:px-6 sm:py-4;
+}
+
+/* Improved card spacing */
+.form-content .space-y-4>*+* {
+  margin-top: 1.5rem;
+}
+
+.form-content .space-y-6>*+* {
+  margin-top: 2rem;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+  .builder-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .preview-container {
+    max-height: 60vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .builder-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Smooth transitions */
+.builder-section {
+  transition: all 0.3s ease-in-out;
+}
+
+.builder-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Mobile Responsiveness for Builder Page */
+@media (max-width: 640px) {
+  .builder-page {
+    padding: 0.5rem;
+  }
+
+  .builder-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .builder-section {
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+  }
+
+  .preview-container {
+    max-height: 50vh;
+    min-height: 400px;
+  }
+
+  .multi-step-form h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .form-content {
+    min-height: 300px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .builder-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .preview-container {
+    max-height: 60vh;
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .builder-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .preview-container {
+    min-height: 80vh;
+  }
+
+  .form-content {
+    min-height: 600px !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .builder-section:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  input,
+  textarea,
+  select {
+    min-height: 48px;
+    font-size: 16px;
+    /* Prevents zoom on iOS */
+  }
+}
+
+/* Full-width utilization */
+.full-width-container {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+}
+
+/* Improved scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better focus states for accessibility */
+.focus-visible:focus {
+  outline: 2px solid #ffb703;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Better text visibility fixes */
+.text-visibility-fix {
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure all step indicators and progress text are visible */
+.step-indicator,
+.progress-text,
+.preview-description {
+  color: #000000 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Bigger preview container */
+.preview-container {
+  min-height: 600px;
+}
+
+@media (min-width: 640px) {
+  .preview-container {
+    min-height: 700px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .preview-container {
+    min-height: 800px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .preview-container {
+    min-height: 900px;
+  }
+}
+
+/* Enhanced preview scaling */
+.preview-scale {
+  transform-origin: top center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Better contrast for all text elements */
+.builder-page .text-secondary {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
+
+.builder-page .text-accent {
+  color: #fb8500 !important;
+  font-weight: 700 !important;
+}
+
+/* Ensure badges and indicators are visible */
+.visibility-badge {
+  background-color: rgba(255, 183, 3, 0.2) !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 183, 3, 0.4) !important;
 }

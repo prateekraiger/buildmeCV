@@ -1,8 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { HeroSection } from "./blocks/hero-section-1";
-import { motion, AnimatePresence } from "framer-motion";
-import { Bars3Icon, XMarkIcon } from "./Icons";
+
+
 import { Github, Twitter } from 'lucide-react';
 
 import Navbar from './Navbar';
@@ -11,8 +9,8 @@ import { Footer } from './ui/footer';
 export const Layout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  
+  
 
   return (
     <div className="min-h-screen flex flex-col relative text-gray-900">

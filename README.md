@@ -23,61 +23,17 @@ BuildMeCV is a modern, feature-rich resume builder with a striking new design. I
 - **PDF Generation:** [@react-pdf/renderer](https://react-pdf.org/)
 - **AI Integration:** [@google/genai (Gemini API)](https://ai.google.dev/)
 
-## 🎨 Customization
-
-Customizing the look and feel of BuildMeCV is straightforward.
-
-### Changing the Color Palette
-
-All colors are defined as CSS variables and configured within Tailwind CSS in the `index.html` file.
-
-1.  Open `index.html`.
-2.  Locate the `<script>` tag containing `tailwind.config`.
-3.  You can change the hex codes for the following color variables:
-    -   `primary`: The main dark background color.
-    -   `secondary`: The lighter blue/gray for secondary text and elements.
-    -   `accent`: The main highlight color for buttons, links, and titles.
-    -   `accent-dark`: A darker version of the accent for hover states.
-    -   `text-light`: The primary light text color.
-    -   `background-light`: The background color for the resume preview and PDF.
-
-```html
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          'primary': 'var(--color-primary, #003049)',
-          'secondary': 'var(--color-secondary, #669bbc)',
-          'accent': 'var(--color-accent, #c1121f)',
-          /* ... more colors */
-        },
-      },
-    },
-  };
-</script>
-```
-
-### Changing Accent Color Options
-
-The preset accent color choices available in the builder can be modified in `components/builder/design/AccentColorPicker.tsx`. Simply update the `colors` array with your desired `name` and hex `value`.
-
 ## ⚙️ Getting Started
 
 This project is designed to run directly in the browser without a complex build step. For the best experience, especially for features like importing/exporting data, it's recommended to serve the files using a local web server.
 
-### Prerequisites
-
-- A modern web browser (e.g., Chrome, Firefox, Edge).
-- [Node.js and pnpm](https://pnpm.io/installation) installed on your system.
-- A Google Gemini API Key for AI features.
-
 ### Installation & Setup
 
 1.  **Clone the repository:**
+
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/prateekraiger/buildmeCV.git
+    cd buildmeCV
     ```
 
 2.  **API Key Configuration:**
@@ -90,7 +46,7 @@ This project is designed to run directly in the browser without a complex build 
     # Run a local server on port 8080
     pnpm exec http-server .
     ```
-    
+
     If you don't have `http-server`, `pnpm exec` will prompt you to install it. Once running, open your browser and navigate to the address provided (usually `http://127.0.0.1:8080`).
 
 You can now start building your resume!

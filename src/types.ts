@@ -5,8 +5,6 @@ export interface PersonalInfo {
   phone: string;
   location: string;
   linkedin: string;
-  portfolio: string;
-  github: string;
   website?: string;
   // New sections for portfolio and GitHub
   portfolioSection?: {

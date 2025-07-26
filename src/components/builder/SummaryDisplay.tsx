@@ -9,7 +9,7 @@ export const SummaryDisplay: React.FC = () => {
     <div className="space-y-4">
       <h3 className="text-xl font-semibold text-foreground">Review Your Resume</h3>
       <p className="text-secondary">
-        Please review the information you've entered. You can go back to make
+        Please review the information you&apos;ve entered. You can go back to make
         changes if needed.
       </p>
 

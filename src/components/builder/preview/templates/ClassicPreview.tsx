@@ -89,14 +89,53 @@ export const ClassicPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => 
             <div className="text-center p-6">
                 <h1 className="text-4xl font-bold" style={{color: accentColor}}>{personal.name}</h1>
                 <p className="text-lg text-foreground mt-1">{personal.title}</p>
-                <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-3 text-secondary">
+                <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-3 text-foreground">
                     <span>{personal.email}</span>
                     <span>{personal.phone}</span>
                     <span>{personal.location}</span>
                 </div>
-                 <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-1 text-secondary">
-                    <span>{personal.linkedin}</span>
-                    <span>{personal.portfolio}</span>
+                 <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-1 text-foreground">
+                    {personal.linkedin && (
+                        <span>
+                            <a
+                                href={personal.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline font-semibold"
+                                style={{ color: accentColor }}
+                            >
+                                LinkedIn
+                            </a>
+                        </span>
+                    )}
+                    {personal.linkedin && (personal.portfolioSection?.url || personal.githubSection?.url) && " | "}
+                    {personal.portfolioSection?.url && (
+                        <span>
+                            <a
+                                href={personal.portfolioSection.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline font-semibold"
+                                style={{ color: accentColor }}
+                            >
+                                Portfolio
+                            </a>
+                        </span>
+                    )}
+                    {personal.portfolioSection?.url && personal.githubSection?.url && " | "}
+                    {personal.githubSection?.url && (
+                        <span>
+                            <a
+                                href={personal.githubSection.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline font-semibold"
+                                style={{ color: accentColor }}
+                            >
+                                GitHub
+                            </a>
+                        </span>
+                    )}
                 </div>
             </div>
 

@@ -106,8 +106,9 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({ resume })
                 </View>
                  <View style={styles.contactInfo}>
                     <Link src={personal.linkedin} style={styles.contactItem}>{personal.linkedin}</Link>
+                    {personal.githubSection?.url && (<><Text style={styles.contactItem}> | </Text><Link src={personal.githubSection.url} style={styles.contactItem}>{personal.githubSection.url}</Link></>)}
                     <Text style={styles.contactItem}> | </Text>
-                    <Link src={personal.portfolio} style={styles.contactItem}>{personal.portfolio}</Link>
+                    {personal.portfolioSection?.url && <Link src={personal.portfolioSection.url} style={styles.contactItem}>{personal.portfolioSection.url}</Link>}
                 </View>
             </View>
 

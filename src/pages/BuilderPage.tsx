@@ -139,29 +139,51 @@ const BuilderPage: React.FC = () => {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
+      className="builder-page min-h-screen w-full"
     >
-      {/* Remove: <HeroSection /> */}
-      <div className="relative min-h-screen w-full text-foreground">
-        {/* Main layout */}
-        <div className="container mx-auto py-10 px-2 sm:px-6 lg:px-12 flex flex-col lg:flex-row gap-10">
-          {/* Left: Form */}
-          <div className="flex-1 max-w-xl">
-            <div className="sticky top-20 z-10 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
-              <Progress value={completion} />
+      <div className="w-full full-height-layout">
+        {/* Main layout - Full width responsive grid */}
+        <div className="w-full h-full px-2 sm:px-4 lg:px-6 xl:px-8 py-4 sm:py-6 lg:py-8">
+          <div className="builder-grid grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 h-full">
+            {/* Left: Form Section - Larger and more spacious */}
+            <div className="w-full flex flex-col min-h-full">
+              {/* Progress Bar - Sticky and prominent */}
+              <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
+                <div className="text-lg sm:text-xl font-semibold text-dark mb-4">
+                  Resume Progress
+                </div>
+                <Progress value={completion} />
+              </div>
+
+              {/* Form Content - Larger container with better spacing */}
+              <div className="builder-section flex-1 bg-white/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg border border-primary/20">
+                <MultiStepForm steps={steps} onFinish={handleFinish} />
+              </div>
             </div>
-            <div className="mt-6">
-              <MultiStepForm steps={steps} onFinish={handleFinish} />
-            </div>
-          </div>
-          {/* Right: Preview */}
-          <div className="flex-1 flex flex-col items-center">
-            <div className="sticky top-20 w-full">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-gray-900">
+
+            {/* Right: Preview Section - Larger and no scrollbar */}
+            <div className="w-full flex flex-col min-h-full">
+              {/* Preview Header - More prominent */}
+              <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark flex items-center">
+                  <span className="mr-3 text-accent">👀</span>
                   Live Preview
                 </h2>
+                <p className="text-black font-medium mt-2 text-sm sm:text-base preview-description">
+                  See your resume update in real-time
+                </p>
               </div>
-              <LivePreview />
+
+              {/* Preview Content - Bigger and full height, no scrollbar */}
+              <div className="builder-section flex-1 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-primary/20 overflow-hidden">
+                <div className="preview-container w-full h-full p-4 sm:p-6 lg:p-8">
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-full max-w-full h-full min-h-[600px] sm:min-h-[700px] lg:min-h-[800px]">
+                      <LivePreview />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

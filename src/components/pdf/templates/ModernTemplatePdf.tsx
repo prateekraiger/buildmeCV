@@ -116,7 +116,8 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({ resume }) 
                 <View style={styles.contactBlock}><Text style={styles.contactLabel}>Phone</Text><Text style={styles.contactText}>{personal.phone}</Text></View>
                 <View style={styles.contactBlock}><Text style={styles.contactLabel}>Location</Text><Text style={styles.contactText}>{personal.location}</Text></View>
                 <View style={styles.contactBlock}><Text style={styles.contactLabel}>LinkedIn</Text><Link src={personal.linkedin} style={styles.contactLink}>{personal.linkedin}</Link></View>
-                <View style={styles.contactBlock}><Text style={styles.contactLabel}>Portfolio</Text><Link src={personal.portfolio} style={styles.contactLink}>{personal.portfolio}</Link></View>
+                {personal.githubSection?.url && (<View style={styles.contactBlock}><Text style={styles.contactLabel}>GitHub</Text><Link src={personal.githubSection.url} style={styles.contactLink}>{personal.githubSection.url}</Link></View>)}
+                {personal.portfolioSection?.url && (<View style={styles.contactBlock}><Text style={styles.contactLabel}>Portfolio</Text><Link src={personal.portfolioSection.url} style={styles.contactLink}>{personal.portfolioSection.url}</Link></View>)}
 
                 {sectionOrder.map(key => sidebarSections.includes(key) && <SectionRenderer key={key} sectionKey={key} view="sidebar" />)}
             </View>

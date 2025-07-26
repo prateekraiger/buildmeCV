@@ -107,11 +107,11 @@ const useResumeStore = create<ResumeState>()(
       resume: initialResumeState,
       setResume: (resume) => set({ resume }),
       resetResume: () => set({ resume: initialResumeState }),
-      updateField: (path, value) => {
+      updateField: (path: string, value: any) => {
         set((state) => {
           const keys = path.split(".");
           const newState = { ...state, resume: { ...state.resume } };
-          let current: any = newState.resume;
+          let current: { [key: string]: any } = newState.resume;
 
           for (let i = 0; i < keys.length - 1; i++) {
             const key = keys[i];
@@ -122,7 +122,7 @@ const useResumeStore = create<ResumeState>()(
           return newState;
         });
       },
-      addListItem: (key, newItem) => {
+      addListItem: (key: keyof ResumeData, newItem: any) => {
         set((state) => {
           const list = state.resume[key] as any[];
           if (Array.isArray(list)) {
@@ -136,14 +136,14 @@ const useResumeStore = create<ResumeState>()(
           return state;
         });
       },
-      updateListItem: (key, updatedItem) => {
+      updateListItem: (key: keyof ResumeData, updatedItem: any) => {
         set((state) => {
           const list = state.resume[key] as any[];
           if (Array.isArray(list)) {
             return {
               resume: {
                 ...state.resume,
-                [key]: list.map((item) =>
+                [key]: list.map((item: any) =>
                   item.id === updatedItem.id ? updatedItem : item
                 ),
               },
@@ -152,14 +152,14 @@ const useResumeStore = create<ResumeState>()(
           return state;
         });
       },
-      removeListItem: (key, id) => {
+      removeListItem: (key: keyof ResumeData, id: string) => {
         set((state) => {
           const list = state.resume[key] as any[];
           if (Array.isArray(list)) {
             return {
               resume: {
                 ...state.resume,
-                [key]: list.filter((item) => item.id !== id),
+                [key]: list.filter((item: any) => item.id !== id),
               },
             };
           }
@@ -180,7 +180,7 @@ const useResumeStore = create<ResumeState>()(
         const completed = sections.filter(Boolean).length;
         return Math.round((completed / sections.length) * 100);
       },
-      moveSection: (key, direction) => {
+      moveSection: (key: SectionKey, direction: "up" | "down") => {
         set((state) => {
           const { sectionOrder } = state.resume;
           const index = sectionOrder.indexOf(key);
@@ -208,7 +208,7 @@ const useResumeStore = create<ResumeState>()(
           };
         });
       },
-      setTemplate: (template) => {
+      setTemplate: (template: TemplateKey) => {
         set((state) => ({
           resume: {
             ...state.resume,
@@ -216,7 +216,7 @@ const useResumeStore = create<ResumeState>()(
           },
         }));
       },
-      setAccentColor: (color) => {
+      setAccentColor: (color: string) => {
         set((state) => ({
           resume: {
             ...state.resume,

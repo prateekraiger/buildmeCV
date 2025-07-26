@@ -160,14 +160,24 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
           </h1>
           <p className="text-md text-foreground mt-1">{personal.title}</p>
         </div>
-        <div className="mt-4 text-xs text-center space-y-1 text-secondary">
+        <div className="mt-4 text-xs text-center space-y-1 text-foreground">
           <p>{personal.email}</p>
           <p>{personal.phone}</p>
           <p>{personal.location}</p>
-          <p>{personal.linkedin}</p>
-          {/* Portfolio Section */}
-          {personal.portfolioSection?.url && (
-            <p>
+          <div className="flex justify-center flex-wrap gap-x-2">
+            {personal.linkedin && (
+              <a
+                href={personal.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline font-semibold"
+                style={{ color: accentColor }}
+              >
+                LinkedIn
+              </a>
+            )}
+            {personal.linkedin && (personal.portfolioSection?.url || personal.githubSection?.url) && " | "}
+            {personal.portfolioSection?.url && (
               <a
                 href={personal.portfolioSection.url}
                 target="_blank"
@@ -177,13 +187,9 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
               >
                 Portfolio
               </a>
-              {personal.portfolioSection.description &&
-                `: ${personal.portfolioSection.description}`}
-            </p>
-          )}
-          {/* GitHub Section */}
-          {personal.githubSection?.url && (
-            <p>
+            )}
+            {personal.portfolioSection?.url && personal.githubSection?.url && " | "}
+            {personal.githubSection?.url && (
               <a
                 href={personal.githubSection.url}
                 target="_blank"
@@ -193,10 +199,8 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
               >
                 GitHub
               </a>
-              {personal.githubSection.description &&
-                `: ${personal.githubSection.description}`}
-            </p>
-          )}
+            )}
+          </div>
         </div>
 
         <div className="mt-6">

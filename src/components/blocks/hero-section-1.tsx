@@ -1,9 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 
-import { Button } from '@/components/ui/button'
-import { AnimatedGroup } from '@/components/ui/animated-group'
-import { cn } from '@/lib/utils'
+import { Link } from 'react-router-dom'
+import { AnimatedGroup } from '@/components/ui/animated-group';
+
+
 
 const transitionVariants = {
     item: {
@@ -14,7 +13,7 @@ const transitionVariants = {
         },
         visible: {
             opacity: 1,
-            filter: 'blur(0px)',
+            filter: 'blur(0.001px)',
             y: 0,
             transition: {
                 type: 'spring',
@@ -30,9 +29,14 @@ export function HeroSection() {
         <main>
             <section>
                 <div className="relative">
-                    <AnimatedGroup
-                        className="absolute inset-0 -z-20" />
+                    <div className="absolute inset-0 -z-20" />
                     <div className="mx-auto max-w-7xl px-6">
+                        <nav className="flex items-center justify-between py-4">
+                            <Link to="/">
+                                
+                            </Link>
+                            
+                        </nav>
                         <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                             <AnimatedGroup
                                 variants={{
@@ -64,46 +68,12 @@ export function HeroSection() {
                                     Build Your Standout Resume Effortlessly
                                 </h1>
                                 <p
-                                    className="mx-auto mt-8 max-w-2xl text-balance text-lg">
+                                    className="mx-auto mt-8 max-2xl text-balance text-lg">
                                     buildmeCV is your AI-powered resume builder. Create beautiful, professional resumes in minutes and showcase your skills to land your dream job.
                                 </p>
                             </AnimatedGroup>
 
-                            <AnimatedGroup
-                                variants={{
-                                    container: {
-                                        visible: {
-                                            transition: {
-                                                staggerChildren: 0.05,
-                                                delayChildren: 0.75,
-                                            },
-                                        },
-                                    },
-                                    ...transitionVariants,
-                                }}
-                                className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
-                                <div
-                                    key={1}
-                                    className="bg-foreground/10 rounded-[14px] border p-0.5">
-                                    <Button
-                                        asChild
-                                        size="lg"
-                                        className="rounded-xl px-5 text-base">
-                                        <Link to="/builder">
-                                            <span className="text-nowrap">Start Building</span>
-                                        </Link>
-                                    </Button>
-                                </div>
-                                <Button
-                                    key={2}
-                                    asChild
-                                    variant="ghost"
-                                    className="h-10.5 rounded-xl px-5">
-                                    <Link to="/contact">
-                                        <span className="text-nowrap">Request a demo</span>
-                                    </Link>
-                                </Button>
-                            </AnimatedGroup>
+                            
                         </div>
                     </div>
 
