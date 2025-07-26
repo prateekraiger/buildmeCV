@@ -30,7 +30,7 @@ const MainSectionRenderer: React.FC<{
             {resume.experience.map((exp) => (
               <div key={exp.id} className="mb-3">
                 <div className="flex justify-between">
-                  <p className="font-bold text-primary">{exp.role}</p>
+                  <p className="font-bold text-foreground">{exp.role}</p>
                   <p className="text-xs italic text-secondary">
                     {exp.startDate} - {exp.endDate}
                   </p>
@@ -38,7 +38,7 @@ const MainSectionRenderer: React.FC<{
                 <p className="text-sm" style={{ color: accentColor }}>
                   {exp.company} | {exp.location}
                 </p>
-                <div className="text-xs mt-1 whitespace-pre-wrap text-primary/90">
+                <div className="text-xs mt-1 whitespace-pre-wrap text-foreground/90">
                   {exp.description}
                 </div>
               </div>
@@ -53,7 +53,7 @@ const MainSectionRenderer: React.FC<{
             {resume.education.map((edu) => (
               <div key={edu.id} className="mb-3">
                 <div className="flex justify-between">
-                  <p className="font-bold text-primary">{edu.degree}</p>
+                  <p className="font-bold text-foreground">{edu.degree}</p>
                   <p className="text-xs italic text-secondary">
                     {edu.startDate} - {edu.endDate}
                   </p>
@@ -76,7 +76,7 @@ const MainSectionRenderer: React.FC<{
             {resume.projects.map((proj) => (
               <div key={proj.id} className="mb-3">
                 <div className="flex justify-between items-baseline">
-                  <p className="font-bold text-primary">{proj.name}</p>
+                  <p className="font-bold text-foreground">{proj.name}</p>
                   <a
                     href={proj.url}
                     target="_blank"
@@ -87,7 +87,7 @@ const MainSectionRenderer: React.FC<{
                     {proj.url}
                   </a>
                 </div>
-                <div className="text-xs mt-1 whitespace-pre-wrap text-primary/90">
+                <div className="text-xs mt-1 whitespace-pre-wrap text-foreground/90">
                   {proj.description}
                 </div>
               </div>
@@ -114,7 +114,7 @@ const SidebarSectionRenderer: React.FC<{
               {resume.skills.map((skill) => (
                 <span
                   key={skill.id}
-                  className="bg-accent/20 text-primary rounded-md px-2 py-0.5 text-xs font-medium"
+                  className="bg-accent/20 text-foreground rounded-md px-2 py-0.5 text-xs font-medium"
                 >
                   {skill.name}
                 </span>
@@ -129,7 +129,7 @@ const SidebarSectionRenderer: React.FC<{
           <Section title="Achievements" accentColor={accentColor}>
             <ul className="list-disc list-inside text-xs space-y-1">
               {resume.achievements.map((ach) => (
-                <li key={ach.id} className="text-primary/90">
+                <li key={ach.id} className="text-foreground/90">
                   {ach.name}
                 </li>
               ))}
@@ -158,7 +158,7 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
           <h1 className="text-2xl font-bold" style={{ color: accentColor }}>
             {personal.name}
           </h1>
-          <p className="text-md text-primary mt-1">{personal.title}</p>
+          <p className="text-md text-foreground mt-1">{personal.title}</p>
         </div>
         <div className="mt-4 text-xs text-center space-y-1 text-secondary">
           <p>{personal.email}</p>
@@ -217,7 +217,7 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
       <div className="w-2/3 p-6 overflow-y-auto">
         {summary && (
           <Section title="Summary" accentColor={accentColor}>
-            <p className="text-xs italic text-primary/80">{summary}</p>
+            <p className="text-xs italic text-foreground/80">{summary}</p>
           </Section>
         )}
         {sectionOrder.map(

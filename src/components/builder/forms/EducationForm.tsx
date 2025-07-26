@@ -17,7 +17,7 @@ export const EducationForm: React.FC = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 >
-                    <Card className="relative !p-4 bg-primary/30">
+                    <Card className="relative !p-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <Input label="Degree" value={edu.degree} onChange={e => updateListItem('education', {...edu, degree: e.target.value})} />
                             <Input label="University" value={edu.university} onChange={e => updateListItem('education', {...edu, university: e.target.value})} />

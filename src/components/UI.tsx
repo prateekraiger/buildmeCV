@@ -9,14 +9,14 @@ export const Input: React.FC<InputProps> = ({ label, id, ...props }) => (
   <div>
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-secondary mb-1"
+      className="block text-sm font-medium text-foreground mb-1"
     >
       {label}
     </label>
     <input
       id={id}
       {...props}
-      className="w-full bg-primary border border-secondary/30 text-text-light rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition"
+      className="w-full bg-white border border-primary text-foreground rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition"
     />
   </div>
 );
@@ -30,14 +30,14 @@ export const Textarea: React.FC<TextareaProps> = ({ label, id, ...props }) => (
   <div>
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-secondary mb-1"
+      className="block text-sm font-medium text-foreground mb-1"
     >
       {label}
     </label>
     <textarea
       id={id}
       {...props}
-      className="w-full bg-primary border border-secondary/30 text-text-light rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition"
+      className="w-full bg-white border border-primary text-foreground rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition"
       rows={4}
     />
   </div>
@@ -58,13 +58,13 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses =
-    "px-4 py-2 rounded-lg font-semibold text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary transition-colors duration-150 ease-in-out inline-flex items-center justify-center gap-2 backdrop-blur bg-white/30 border border-gray-200/40";
+    "px-4 py-2 rounded-lg font-semibold text-sm shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-150 ease-in-out inline-flex items-center justify-center gap-2";
 
   const variantClasses = {
-    primary: "text-gray-900 bg-accent/80 hover:bg-accent focus:ring-accent",
+    primary: "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary",
     secondary:
-      "text-gray-900 bg-white/40 border border-secondary/50 hover:bg-secondary/10 focus:ring-accent",
-    danger: "text-white bg-red-600/80 hover:bg-red-700 focus:ring-red-600",
+      "bg-white border border-primary text-foreground hover:bg-gray-100 focus:ring-primary",
+    danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-600",
   };
 
   return (
@@ -88,7 +88,7 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = ({ children, className }) => (
   <div
-    className={`bg-primary/50 border border-secondary/20 rounded-lg shadow-lg p-4 sm:p-6 ${className}`}
+    className={`bg-white border border-primary rounded-lg shadow-lg p-4 sm:p-6 ${className}`}
   >
     {children}
   </div>
@@ -105,11 +105,11 @@ export const Progress: React.FC<ProgressProps> = ({ value }) => {
         <span className="text-base font-medium text-secondary">
           Profile Completion
         </span>
-        <span className="text-sm font-medium text-text-light">
+        <span className="text-sm font-medium text-foreground">
           {safeValue}%
         </span>
       </div>
-      <div className="w-full bg-primary rounded-full h-2.5 border border-secondary/20 overflow-hidden">
+      <div className="w-full bg-white rounded-full h-2.5 border border-primary overflow-hidden">
         <div className="bg-gradient-to-r from-accent to-accent-dark h-2.5 rounded-full">
           <motion.div
             initial={{ width: 0 }}
@@ -188,7 +188,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       {children}
       {isVisible && (
         <div
-          className={`absolute z-50 px-2 py-1 text-xs text-text-light bg-primary border border-secondary/20 rounded shadow-lg whitespace-nowrap ${positions[position]}`}
+          className={`absolute z-50 px-2 py-1 text-xs text-foreground bg-primary border border-secondary/20 rounded shadow-lg whitespace-nowrap ${positions[position]}`}
         >
           {content}
         </div>

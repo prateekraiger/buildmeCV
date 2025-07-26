@@ -16,11 +16,11 @@ const SectionRenderer: React.FC<{ sectionKey: SectionKey; resume: ResumeData; ac
                     {resume.experience.map(exp => (
                         <div key={exp.id} className="mb-3">
                             <div className="flex justify-between">
-                                <p className="font-bold text-primary">{exp.role}</p>
+                                <p className="font-bold text-foreground">{exp.role}</p>
                                 <p className="text-xs italic text-secondary">{exp.startDate} - {exp.endDate}</p>
                             </div>
                             <p className="text-sm" style={{ color: accentColor }}>{exp.company} | {exp.location}</p>
-                            <div className="text-xs mt-1 whitespace-pre-wrap text-primary/90">{exp.description}</div>
+                            <div className="text-xs mt-1 whitespace-pre-wrap text-foreground/90">{exp.description}</div>
                         </div>
                     ))}
                 </Section>
@@ -31,7 +31,7 @@ const SectionRenderer: React.FC<{ sectionKey: SectionKey; resume: ResumeData; ac
                     {resume.education.map(edu => (
                         <div key={edu.id} className="mb-3">
                             <div className="flex justify-between">
-                                <p className="font-bold text-primary">{edu.degree}</p>
+                                <p className="font-bold text-foreground">{edu.degree}</p>
                                 <p className="text-xs italic text-secondary">{edu.startDate} - {edu.endDate}</p>
                             </div>
                             <p className="text-sm" style={{ color: accentColor }}>{edu.university} | {edu.location}</p>
@@ -46,10 +46,10 @@ const SectionRenderer: React.FC<{ sectionKey: SectionKey; resume: ResumeData; ac
                     {resume.projects.map(proj => (
                         <div key={proj.id} className="mb-3">
                             <div className="flex justify-between items-baseline">
-                                <p className="font-bold text-primary">{proj.name}</p>
+                                <p className="font-bold text-foreground">{proj.name}</p>
                                 <p className="text-xs" style={{ color: accentColor }}>{proj.url}</p>
                             </div>
-                            <div className="text-xs mt-1 whitespace-pre-wrap text-primary/90">{proj.description}</div>
+                            <div className="text-xs mt-1 whitespace-pre-wrap text-foreground/90">{proj.description}</div>
                         </div>
                     ))}
                 </Section>
@@ -88,7 +88,7 @@ export const ClassicPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => 
             {/* Header */}
             <div className="text-center p-6">
                 <h1 className="text-4xl font-bold" style={{color: accentColor}}>{personal.name}</h1>
-                <p className="text-lg text-primary mt-1">{personal.title}</p>
+                <p className="text-lg text-foreground mt-1">{personal.title}</p>
                 <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-3 text-secondary">
                     <span>{personal.email}</span>
                     <span>{personal.phone}</span>

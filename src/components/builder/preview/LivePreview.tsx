@@ -12,7 +12,7 @@ export const LivePreview: React.FC = () => {
 
   return (
     <div
-      className="w-full aspect-[8.5/11] bg-white/60 backdrop-blur-lg shadow-2xl rounded-2xl overflow-y-auto text-sm text-gray-900 transition-all duration-300 border border-gray-200"
+      className="w-full aspect-[8.5/11] bg-white/60 backdrop-blur-lg shadow-2xl rounded-2xl overflow-y-auto text-sm text-foreground transition-all duration-300 border border-border"
       style={{ "--accent-color": accentColor } as React.CSSProperties}
     >
       <PreviewComponent resume={resume} />

@@ -7,15 +7,14 @@ export const SummaryDisplay: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold text-dark">Review Your Resume</h3>
+      <h3 className="text-xl font-semibold text-foreground">Review Your Resume</h3>
       <p className="text-secondary">
         Please review the information you've entered. You can go back to make
         changes if needed.
       </p>
 
-      {/* Personal Information */}
-      <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-        <h4 className="text-lg font-medium text-dark">Personal Information</h4>
+      <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+        <h4 className="text-lg font-medium text-foreground">Personal Information</h4>
         <p>
           <strong>Name:</strong> {resume.personal.name}
         </p>
@@ -36,24 +35,22 @@ export const SummaryDisplay: React.FC = () => {
         </p>
       </div>
 
-      {/* Professional Summary */}
       {resume.summary && (
-        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-          <h4 className="text-lg font-medium text-dark">
+        <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+          <h4 className="text-lg font-medium text-foreground">
             Professional Summary
           </h4>
           <p>{resume.summary}</p>
         </div>
       )}
 
-      {/* Work Experience */}
       {resume.experience.length > 0 && (
-        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-          <h4 className="text-lg font-medium text-dark">Work Experience</h4>
+        <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+          <h4 className="text-lg font-medium text-foreground">Work Experience</h4>
           {resume.experience.map((exp, index) => (
             <div
               key={index}
-              className="border-b border-border-light pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
+              className="border-b border-border pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
             >
               <p>
                 <strong>{exp.title}</strong> at {exp.company}
@@ -62,11 +59,8 @@ export const SummaryDisplay: React.FC = () => {
                 {exp.startDate} - {exp.endDate}
               </p>
               <ul className="list-disc list-inside text-sm">
-                {(Array.isArray(exp.description)
-                  ? exp.description
-                  : [exp.description]
-                ).map((desc, i) => (
-                  <li key={i}>{desc}</li>
+                {exp.description.split('\n').filter(line => line.trim() !== '').map((desc, i) => (
+                  <li key={i}>{desc.replace(/^•\s*/, '')}</li>
                 ))}
               </ul>
             </div>
@@ -74,14 +68,13 @@ export const SummaryDisplay: React.FC = () => {
         </div>
       )}
 
-      {/* Education */}
       {resume.education.length > 0 && (
-        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-          <h4 className="text-lg font-medium text-dark">Education</h4>
+        <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+          <h4 className="text-lg font-medium text-foreground">Education</h4>
           {resume.education.map((edu, index) => (
             <div
               key={index}
-              className="border-b border-border-light pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
+              className="border-b border-border pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
             >
               <p>
                 <strong>{edu.degree}</strong> from {edu.university}
@@ -94,40 +87,33 @@ export const SummaryDisplay: React.FC = () => {
         </div>
       )}
 
-      {/* Projects */}
       {resume.projects.length > 0 && (
-        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-          <h4 className="text-lg font-medium text-dark">Projects</h4>
+        <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+          <h4 className="text-lg font-medium text-foreground">Projects</h4>
           {resume.projects.map((proj, index) => (
             <div
               key={index}
-              className="border-b border-border-light pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
+              className="border-b border-border pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
             >
               <p>
                 <strong>{proj.title}</strong>
               </p>
-              <p>
-                {Array.isArray(proj.description)
-                  ? proj.description.join(", ")
-                  : proj.description}
-              </p>
+              <p>{proj.description}</p>
             </div>
           ))}
         </div>
       )}
 
-      {/* Skills */}
       {resume.skills.length > 0 && (
-        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-          <h4 className="text-lg font-medium text-dark">Skills</h4>
+        <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+          <h4 className="text-lg font-medium text-foreground">Skills</h4>
           <p>{resume.skills.map((s) => s.name).join(", ")}</p>
         </div>
       )}
 
-      {/* Achievements */}
       {resume.achievements.length > 0 && (
-        <div className="bg-white/70 backdrop-blur-lg p-4 rounded-xl shadow-lg space-y-2 border border-primary/10">
-          <h4 className="text-lg font-medium text-dark">Achievements</h4>
+        <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
+          <h4 className="text-lg font-medium text-foreground">Achievements</h4>
           <ul className="list-disc list-inside text-sm">
             {resume.achievements.map((ach, index) => (
               <li key={index}>{ach.name}</li>

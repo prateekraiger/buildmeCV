@@ -122,7 +122,7 @@ export const SimpleListForm: React.FC<SimpleListFormProps> = ({
           {list.map((item) => (
             <div
               key={item.id}
-              className="flex items-center gap-1 bg-accent/20 text-text-light rounded-full px-3 py-1 text-sm"
+              className="flex items-center gap-1 bg-white border border-primary text-foreground rounded-full px-3 py-1 text-sm"
             >
               <span>{item.name}</span>
               <button

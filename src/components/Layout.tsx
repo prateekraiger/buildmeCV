@@ -5,9 +5,8 @@ import { Bars3Icon, XMarkIcon } from "./Icons";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const activeLinkClass = "bg-accent text-text-light";
-  const inactiveLinkClass =
-    "text-secondary hover:bg-secondary/20 hover:text-text-light";
+  const activeLinkClass = "bg-dark text-white";
+  const inactiveLinkClass = "text-dark hover:bg-accent hover:text-dark";
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -19,7 +18,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <NavLink
               to="/"
-              className="text-2xl font-bold text-text-light"
+              className="text-2xl font-bold text-dark"
               onClick={closeMobileMenu}
             >
               BuildMe<span className="text-accent">CV</span>
@@ -76,7 +75,7 @@ const Header: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
-              className="p-2 rounded-md text-secondary hover:text-text-light hover:bg-secondary/20 transition-colors"
+              className="p-2 rounded-md text-dark hover:text-dark hover:bg-accent/20 transition-colors"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
@@ -153,8 +152,8 @@ const Header: React.FC = () => {
 };
 
 const Footer: React.FC = () => (
-  <footer className="bg-primary border-t border-secondary/20 mt-auto">
-    <div className="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-secondary text-sm">
+  <footer className="bg-dark border-t border-secondary/20 mt-auto">
+    <div className="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-primary text-sm">
       &copy; {new Date().getFullYear()} BuildMeCV. All Rights Reserved.
     </div>
   </footer>

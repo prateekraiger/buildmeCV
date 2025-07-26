@@ -19,7 +19,7 @@ export const ProjectsForm: React.FC = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 >
-                    <Card className="relative !p-4 bg-primary/30">
+                    <Card className="relative !p-4">
                         <div className="space-y-4">
                             <Input label="Project Name" value={proj.name} onChange={e => updateListItem('projects', {...proj, name: e.target.value})} />
                             <Input label="Project URL" value={proj.url} onChange={e => updateListItem('projects', {...proj, url: e.target.value})} />

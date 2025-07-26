@@ -73,7 +73,7 @@ export const AIButton: React.FC<AIButtonProps> = ({
       type="button"
       onClick={handleEnhance}
       disabled={isLoading}
-      className="absolute top-0 right-0 mt-1 mr-1 p-1.5 rounded-full bg-primary text-accent hover:bg-secondary/20 hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="absolute top-0 right-0 mt-1 mr-1 p-1.5 rounded-full bg-white text-foreground hover:bg-primary hover:text-primary-foreground transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
       aria-label="Enhance with AI"
       title={error || "Enhance with AI"}
     >

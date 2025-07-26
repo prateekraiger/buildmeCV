@@ -50,7 +50,7 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
   return (
     <div className="multi-step-form">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-dark flex items-center">
+        <h2 className="text-2xl font-bold text-foreground flex items-center">
           {currentStep.icon}
           <span className="ml-2">{currentStep.title}</span>
         </h2>
