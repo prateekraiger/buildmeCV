@@ -41,20 +41,34 @@ export const ProjectsForm: React.FC = () => {
                 <div className="relative">
                   <Textarea
                     label="Description"
-                    value={proj.description}
+                    value={
+                      Array.isArray(proj.description)
+                        ? proj.description.join("\n")
+                        : proj.description || ""
+                    }
                     onChange={(e) =>
                       updateListItem("projects", {
                         ...proj,
-                        description: e.target.value,
+                        description: e.target.value
+                          .split("\n")
+                          .filter((line) => line.trim() !== ""),
                       })
                     }
+                    placeholder="• Describe your project and its key features&#10;• Mention technologies used&#10;• Highlight your role and achievements"
+                    rows={4}
                   />
                   <AIButton
-                    textToEnhance={proj.description}
+                    textToEnhance={
+                      Array.isArray(proj.description)
+                        ? proj.description.join("\n")
+                        : proj.description || ""
+                    }
                     onSuccess={(enhancedText) =>
                       updateListItem("projects", {
                         ...proj,
-                        description: enhancedText,
+                        description: enhancedText
+                          .split("\n")
+                          .filter((line) => line.trim() !== ""),
                       })
                     }
                   />
@@ -76,8 +90,9 @@ export const ProjectsForm: React.FC = () => {
         onClick={() =>
           addListItem("projects", {
             id: `proj${Date.now()}`,
+            title: "",
             name: "",
-            description: "",
+            description: [],
             url: "",
           })
         }

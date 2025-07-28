@@ -38,8 +38,16 @@ const MainSectionRenderer: React.FC<{
                 <p className="text-sm" style={{ color: accentColor }}>
                   {exp.company} | {exp.location}
                 </p>
-                <div className="text-xs mt-1 whitespace-pre-wrap text-foreground/90">
-                  {exp.description}
+                <div className="text-xs mt-1 text-foreground/90">
+                  {Array.isArray(exp.description) ? (
+                    exp.description.map((desc, i) => (
+                      <div key={i} className="mb-1">
+                        {desc}
+                      </div>
+                    ))
+                  ) : (
+                    <div>{exp.description}</div>
+                  )}
                 </div>
               </div>
             ))}
@@ -87,8 +95,16 @@ const MainSectionRenderer: React.FC<{
                     {proj.url}
                   </a>
                 </div>
-                <div className="text-xs mt-1 whitespace-pre-wrap text-foreground/90">
-                  {proj.description}
+                <div className="text-xs mt-1 text-foreground/90">
+                  {Array.isArray(proj.description) ? (
+                    proj.description.map((desc, i) => (
+                      <div key={i} className="mb-1">
+                        {desc}
+                      </div>
+                    ))
+                  ) : (
+                    <div>{proj.description}</div>
+                  )}
                 </div>
               </div>
             ))}
@@ -176,7 +192,9 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
                 LinkedIn
               </a>
             )}
-            {personal.linkedin && (personal.portfolioSection?.url || personal.githubSection?.url) && " | "}
+            {personal.linkedin &&
+              (personal.portfolioSection?.url || personal.githubSection?.url) &&
+              " | "}
             {personal.portfolioSection?.url && (
               <a
                 href={personal.portfolioSection.url}
@@ -188,7 +206,9 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
                 Portfolio
               </a>
             )}
-            {personal.portfolioSection?.url && personal.githubSection?.url && " | "}
+            {personal.portfolioSection?.url &&
+              personal.githubSection?.url &&
+              " | "}
             {personal.githubSection?.url && (
               <a
                 href={personal.githubSection.url}
@@ -220,21 +240,26 @@ export const ModernPreview: React.FC<{ resume: ResumeData }> = ({ resume }) => {
       {/* Main Content */}
       <div className="w-2/3 p-6 overflow-y-auto">
         {summary && (
-          <Section title="Summary" accentColor={accentColor}>
+          <Section title="Objective" accentColor={accentColor}>
             <p className="text-xs italic text-foreground/80">{summary}</p>
           </Section>
         )}
-        {sectionOrder.map(
-          (key) =>
-            mainSections.includes(key) && (
-              <MainSectionRenderer
-                key={key}
-                sectionKey={key}
-                resume={resume}
-                accentColor={accentColor}
-              />
-            )
-        )}
+        {/* Custom Section Order: Education → Experience → Projects */}
+        <MainSectionRenderer
+          sectionKey="education"
+          resume={resume}
+          accentColor={accentColor}
+        />
+        <MainSectionRenderer
+          sectionKey="experience"
+          resume={resume}
+          accentColor={accentColor}
+        />
+        <MainSectionRenderer
+          sectionKey="projects"
+          resume={resume}
+          accentColor={accentColor}
+        />
       </div>
     </div>
   );

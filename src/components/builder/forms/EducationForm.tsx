@@ -102,7 +102,6 @@ export const EducationForm: React.FC = () => {
             gpa: "",
             startDate: "",
             endDate: "",
-            description: "",
           })
         }
       >

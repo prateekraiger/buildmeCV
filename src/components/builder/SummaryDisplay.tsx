@@ -7,14 +7,18 @@ export const SummaryDisplay: React.FC = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold text-foreground">Review Your Resume</h3>
+      <h3 className="text-xl font-semibold text-foreground">
+        Review Your Resume
+      </h3>
       <p className="text-secondary">
-        Please review the information you&apos;ve entered. You can go back to make
-        changes if needed.
+        Please review the information you&apos;ve entered. You can go back to
+        make changes if needed.
       </p>
 
       <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
-        <h4 className="text-lg font-medium text-foreground">Personal Information</h4>
+        <h4 className="text-lg font-medium text-foreground">
+          Personal Information
+        </h4>
         <p>
           <strong>Name:</strong> {resume.personal.name}
         </p>
@@ -28,7 +32,7 @@ export const SummaryDisplay: React.FC = () => {
           <strong>LinkedIn:</strong> {resume.personal.linkedin}
         </p>
         <p>
-          <strong>GitHub:</strong> {resume.personal.github}
+          <strong>GitHub:</strong> {resume.personal.githubSection?.url}
         </p>
         <p>
           <strong>Website:</strong> {resume.personal.website}
@@ -46,22 +50,32 @@ export const SummaryDisplay: React.FC = () => {
 
       {resume.experience.length > 0 && (
         <div className="bg-white p-4 rounded-lg shadow-inner space-y-2 border border-border">
-          <h4 className="text-lg font-medium text-foreground">Work Experience</h4>
+          <h4 className="text-lg font-medium text-foreground">
+            Work Experience
+          </h4>
           {resume.experience.map((exp, index) => (
             <div
               key={index}
               className="border-b border-border pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
             >
               <p>
-                <strong>{exp.title}</strong> at {exp.company}
+                <strong>{exp.role}</strong> at {exp.company}
               </p>
               <p>
                 {exp.startDate} - {exp.endDate}
               </p>
               <ul className="list-disc list-inside text-sm">
-                {exp.description.split('\n').filter(line => line.trim() !== '').map((desc, i) => (
-                  <li key={i}>{desc.replace(/^•\s*/, '')}</li>
-                ))}
+                {Array.isArray(exp.description)
+                  ? exp.description.map((desc, i) => (
+                      <li key={i}>{desc.replace(/^•\s*/, "")}</li>
+                    ))
+                  : exp.description &&
+                    exp.description
+                      .split("\n")
+                      .filter((line) => line.trim() !== "")
+                      .map((desc, i) => (
+                        <li key={i}>{desc.replace(/^•\s*/, "")}</li>
+                      ))}
               </ul>
             </div>
           ))}
@@ -96,9 +110,17 @@ export const SummaryDisplay: React.FC = () => {
               className="border-b border-border pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0"
             >
               <p>
-                <strong>{proj.title}</strong>
+                <strong>{proj.name}</strong>
               </p>
-              <p>{proj.description}</p>
+              <div>
+                {Array.isArray(proj.description) ? (
+                  proj.description.map((desc, i) => (
+                    <p key={i}>{desc.replace(/^•\s*/, "")}</p>
+                  ))
+                ) : (
+                  <p>{proj.description}</p>
+                )}
+              </div>
             </div>
           ))}
         </div>

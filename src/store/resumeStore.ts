@@ -27,8 +27,6 @@ const initialResumeState: ResumeData = {
     phone: "123-456-7890",
     location: "San Francisco, CA",
     linkedin: "linkedin.com/in/janedoe",
-    portfolio: "github.com/janedoe",
-    github: "github.com/janedoe",
     website: "janedoe.com",
     portfolioSection: {
       url: "https://janedoe.com",

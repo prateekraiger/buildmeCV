@@ -76,20 +76,34 @@ export const ExperienceForm: React.FC = () => {
                 <div className="md:col-span-2 relative">
                   <Textarea
                     label="Description"
-                    value={exp.description}
+                    value={
+                      Array.isArray(exp.description)
+                        ? exp.description.join("\n")
+                        : exp.description || ""
+                    }
                     onChange={(e) =>
                       updateListItem("experience", {
                         ...exp,
-                        description: e.target.value,
+                        description: e.target.value
+                          .split("\n")
+                          .filter((line) => line.trim() !== ""),
                       })
                     }
+                    placeholder="• Describe your key responsibilities and achievements&#10;• Use bullet points for better readability&#10;• Focus on quantifiable results"
+                    rows={4}
                   />
                   <AIButton
-                    textToEnhance={exp.description}
+                    textToEnhance={
+                      Array.isArray(exp.description)
+                        ? exp.description.join("\n")
+                        : exp.description || ""
+                    }
                     onSuccess={(enhancedText) =>
                       updateListItem("experience", {
                         ...exp,
-                        description: enhancedText,
+                        description: enhancedText
+                          .split("\n")
+                          .filter((line) => line.trim() !== ""),
                       })
                     }
                   />
@@ -111,12 +125,13 @@ export const ExperienceForm: React.FC = () => {
         onClick={() =>
           addListItem("experience", {
             id: `exp${Date.now()}`,
+            title: "",
             role: "",
             company: "",
             location: "",
             startDate: "",
             endDate: "",
-            description: "",
+            description: [],
           })
         }
       >
