@@ -1,15 +1,26 @@
 import React from "react";
-import { Contact2 } from "@/components/ui/contact-2";
+import { EnhancedContact } from "../components/blocks/EnhancedContact";
+import { FaqSection } from "../components/blocks/FaqSection";
+import { useMetaTags } from "../lib/hooks";
+import contactContent from "../content/contact.json";
 
 const ContactPage = () => {
+  useMetaTags({
+    title: "Contact BuildMeCV - Get Help & Support | Resume Builder",
+    description:
+      "Get in touch with BuildMeCV for support, feedback, or collaboration. Find answers to frequently asked questions about our AI resume builder.",
+    keywords:
+      "contact buildmecv, resume builder support, help, FAQ, customer service, feedback",
+  });
+
   return (
-    <Contact2
-      title="Contact Us"
-      description="We are available for questions, feedback, or collaboration opportunities. Let us know how we can help!"
-      phone="(123) 34567890"
-      email="support@buildmecv.com"
-      web={{ label: "buildmecv.com", url: "https://buildmecv.com" }}
-    />
+    <div className="space-y-24 sm:space-y-32 my-12">
+      {/* Enhanced Contact Section */}
+      <EnhancedContact content={contactContent.contactForm} />
+
+      {/* FAQ Section */}
+      <FaqSection content={contactContent.faqSection} />
+    </div>
   );
 };
 

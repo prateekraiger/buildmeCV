@@ -1,14 +1,15 @@
-import React, { useEffect, ReactNode } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { XMarkIcon } from "./Icons";
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
-  children: ReactNode;
-  size?: "sm" | "md" | "lg" | "xl";
-  showCloseButton?: boolean;
+  children: React.ReactNode;
+  size?: "sm" | "md" | "lg" | "xl" | "full";
+  className?: string;
 }
 
 const sizeClasses = {
@@ -16,6 +17,7 @@ const sizeClasses = {
   md: "max-w-lg",
   lg: "max-w-2xl",
   xl: "max-w-4xl",
+  full: "max-w-full mx-4",
 };
 
 export const Modal: React.FC<ModalProps> = ({
@@ -24,12 +26,11 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   children,
   size = "md",
-  showCloseButton = true,
+  className,
 }) => {
-  // Handle escape key
-  useEffect(() => {
+  React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (e.key === "Escape") {
         onClose();
       }
     };
@@ -48,7 +49,7 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -63,30 +64,48 @@ export const Modal: React.FC<ModalProps> = ({
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className={`relative w-full ${sizeClasses[size]} bg-primary border border-secondary/20 rounded-lg shadow-2xl`}
+            transition={{ type: "spring", duration: 0.3 }}
+            className={cn(
+              "relative bg-white rounded-lg shadow-xl w-full",
+              sizeClasses[size],
+              className
+            )}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? "modal-title" : undefined}
           >
             {/* Header */}
-            {(title || showCloseButton) && (
-              <div className="flex items-center justify-between p-6 border-b border-secondary/20">
-                {title && (
-                  <h2 className="text-xl font-semibold text-text-light">
-                    {title}
-                  </h2>
-                )}
-                {showCloseButton && (
-                  <button
-                    onClick={onClose}
-                    className="p-2 rounded-full hover:bg-secondary/20 transition-colors text-secondary hover:text-text-light"
-                    aria-label="Close modal"
-                  >
-                    <XMarkIcon className="w-5 h-5" />
-                  </button>
-                )}
+            {title && (
+              <div className="flex items-center justify-between p-6 border-b">
+                <h2
+                  id="modal-title"
+                  className="text-xl font-semibold text-gray-900"
+                >
+                  {title}
+                </h2>
+                <button
+                  onClick={onClose}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="h-6 w-6" />
+                </button>
               </div>
             )}
 
             {/* Content */}
-            <div className="p-6">{children}</div>
+            <div className={cn("p-6", title && "pt-0")}>{children}</div>
+
+            {/* Close button when no title */}
+            {!title && (
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            )}
           </motion.div>
         </div>
       )}

@@ -1,0 +1,47 @@
+{
+  "contactForm": {
+    "title": "Contact Us",
+    "description": "We are available for questions, feedback, or collaboration opportunities. Let us know how we can help!",
+    "phone": "(123) 34567890",
+    "email": "email@example.com",
+    "web": {
+      "label": "buildmecv.com",
+      "url": "https://www.buildmecv.com"
+    }
+  },
+  "faqSection": {
+    "title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "What is BuildmeCV?",
+        "answer": "BuildmeCV is an AI-powered resume builder that helps you create professional resumes in minutes.",
+        "category": "General"
+      },
+      {
+        "question": "Is BuildmeCV free to use?",
+        "answer": "Yes, we offer a free plan with basic features. We also have premium plans with advanced features.",
+        "category": "Pricing"
+      },
+      {
+        "question": "What templates are available?",
+        "answer": "We offer a variety of templates, including modern and classic designs, to suit different industries and roles.",
+        "category": "Features"
+      },
+      {
+        "question": "Can I customize the templates?",
+        "answer": "Yes, you can customize the colors, fonts, and layout of your resume to match your personal brand.",
+        "category": "Features"
+      },
+      {
+        "question": "How does the AI assistant work?",
+        "answer": "Our AI assistant helps you write compelling resume content by providing suggestions for your summary, experience, and skills sections.",
+        "category": "Features"
+      },
+      {
+        "question": "Is my data secure?",
+        "answer": "Yes, we take data security seriously. Your data is encrypted and stored securely.",
+        "category": "Security"
+      }
+    ]
+  }
+}

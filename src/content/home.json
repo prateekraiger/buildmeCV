@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "title": "Build Your Future, Today",
+    "description": "Create a stunning, professional resume in minutes with our AI-powered builder and land the job you've always dreamed of.",
+    "cta1": {
+      "label": "Get Started for Free",
+      "link": "/builder"
+    },
+    "cta2": {
+      "label": "Explore Templates",
+      "link": "/templates"
+    }
+  },
+  "features": {
+    "title": "A Toolkit for Success",
+    "items": [
+      {
+        "icon": "RectangleGroupIcon",
+        "title": "Multiple Templates",
+        "description": "Choose between a modern two-column layout or a classic single-column design to best fit your industry and style.",
+        "benefits": [
+          "Industry-specific designs",
+          "Classic and modern options",
+          "Fully customizable"
+        ]
+      },
+      {
+        "icon": "SwatchIcon",
+        "title": "Color Customization",
+        "description": "Personalize your resume with a custom accent color to make your resume uniquely yours while maintaining a professional look.",
+        "benefits": [
+          "Unlimited color choices",
+          "Professional palettes",
+          "Brand consistency"
+        ]
+      },
+      {
+        "icon": "SparklesIcon",
+        "title": "AI-Powered Enhancement",
+        "description": "Let our AI assistant rewrite your job descriptions and suggest relevant skills to make your accomplishments shine.",
+        "benefits": [
+          "Action verb suggestions",
+          "Skill recommendations",
+          "Clarity and impact analysis"
+        ]
+      },
+      {
+        "icon": "History",
+        "title": "Persistent Storage",
+        "description": "Your work is saved automatically to your browser. Close the tab and come back anytime to continue where you left off.",
+        "benefits": [
+          "Automatic saving",
+          "Cross-device access",
+          "Secure and private"
+        ]
+      }
+    ]
+  },
+  "templates": {
+    "title": "Choose Your Style",
+    "items": [
+      {
+        "title": "Modern",
+        "isPopular": true,
+        "content": "modern_template_preview_html"
+      },
+      {
+        "title": "Classic",
+        "isPopular": false,
+        "content": "classic_template_preview_html"
+      }
+    ]
+  },
+  "socialProof": {
+    "title": "Join Thousands of Satisfied Job Seekers",
+    "stats": [
+      {
+        "value": 100000,
+        "label": "Resumes Created",
+        "suffix": "+"
+      },
+      {
+        "value": 98,
+        "label": "Job Offer Rate",
+        "suffix": "%"
+      },
+      {
+        "value": 50,
+        "label": "Templates Available",
+        "suffix": "+"
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "BuildmeCV helped me land my dream job. The templates are amazing and easy to use!",
+        "author": "Jane Doe",
+        "title": "Software Engineer",
+        "rating": 5
+      },
+      {
+        "quote": "I never thought resume building could be this easy. Highly recommended!",
+        "author": "John Smith",
+        "title": "Marketing Manager",
+        "rating": 5
+      },
+      {
+        "quote": "The AI suggestions are a game-changer. My resume has never looked better.",
+        "author": "Emily White",
+        "title": "Product Designer",
+        "rating": 4
+      },
+      {
+        "quote": "A must-have tool for any job seeker. The interface is intuitive and the results are professional.",
+        "author": "Michael Brown",
+        "title": "Data Analyst",
+        "rating": 5
+      }
+    ]
+  }
+}

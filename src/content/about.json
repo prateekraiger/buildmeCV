@@ -1,0 +1,56 @@
+{
+  "advantages": {
+    "title": "Why Choose BuildMeCV?",
+    "subtitle": "Discover what makes BuildMeCV the superior choice for creating professional resumes that get you hired.",
+    "advantages": [
+      {
+        "title": "Lightning Fast Setup",
+        "description": "Get started in seconds, not minutes. Our intuitive interface lets you create a professional resume faster than any other platform. No complex setup or lengthy tutorials required.",
+        "icon": "Zap",
+        "highlight": true
+      },
+      {
+        "title": "AI-Powered Intelligence",
+        "description": "Unlike basic resume builders, our AI assistant actively helps improve your content with smart suggestions, skill recommendations, and impact-focused rewrites.",
+        "icon": "Brain"
+      },
+      {
+        "title": "Unlimited Customization",
+        "description": "While others limit your creativity, we offer unlimited color choices, multiple professional templates, and complete design freedom to match your personal brand.",
+        "icon": "Palette"
+      },
+      {
+        "title": "Privacy First",
+        "description": "Your data stays secure and private. Unlike cloud-based competitors, your resume data is stored locally in your browser - no accounts, no data mining, no privacy concerns.",
+        "icon": "Shield",
+        "highlight": true
+      },
+      {
+        "title": "Always Available",
+        "description": "Work offline, anytime, anywhere. No internet connection required after initial load. Your progress is automatically saved and never lost.",
+        "icon": "Clock"
+      },
+      {
+        "title": "Professional Results",
+        "description": "Export to high-quality PDF instantly. Our templates are designed by professionals and tested with hiring managers to ensure maximum impact.",
+        "icon": "Download"
+      },
+      {
+        "title": "Completely Free",
+        "description": "No hidden fees, no premium tiers, no subscription traps. Everything you need to create a stunning resume is completely free, forever.",
+        "icon": "Sparkles",
+        "highlight": true
+      },
+      {
+        "title": "Proven Success",
+        "description": "Join thousands of professionals who've landed their dream jobs using BuildMeCV. Our users report 3x higher interview callback rates.",
+        "icon": "Target"
+      },
+      {
+        "title": "Community Driven",
+        "description": "Built by developers, for everyone. Open source, transparent, and constantly improving based on real user feedback and contributions.",
+        "icon": "Users"
+      }
+    ]
+  }
+}
