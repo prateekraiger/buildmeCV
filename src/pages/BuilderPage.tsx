@@ -133,7 +133,7 @@ const BuilderPage: React.FC = () => {
   };
 
   return (
-    <div className="builder-page min-h-screen w-screen max-w-none overflow-x-hidden">
+    <div className="builder-page min-h-screen w-screen max-w-none overflow-x-hidden pt-20">
       <motion.div
         initial="initial"
         animate="in"
@@ -142,13 +142,13 @@ const BuilderPage: React.FC = () => {
         transition={pageTransition}
       >
         <div className="w-full full-height-layout">
-          {/* Main layout - Full viewport width utilization with 16px margins */}
-          <div className="w-screen h-full p-4 py-2 sm:py-3 lg:py-4">
+          {/* Main layout - 30px padding from all sides, with top padding for navbar */}
+          <div className="w-screen h-full p-[30px] pt-4">
             <div className="builder-grid grid grid-cols-1 lg:grid-cols-2 gap-4 h-full max-w-none w-full">
-              {/* Left: Form Section - Full width utilization with margins */}
-              <div className="w-full flex flex-col min-h-full form-section m-4">
+              {/* Left: Form Section - Full width utilization */}
+              <div className="w-full flex flex-col min-h-full form-section">
                 {/* Progress Bar - Sticky and prominent */}
-                <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
+                <div className="builder-section sticky top-4 z-10 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
                   <div className="text-lg sm:text-xl font-semibold text-dark mb-4">
                     Resume Progress
                   </div>
@@ -161,10 +161,10 @@ const BuilderPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right: Preview Section - Full width utilization with margins */}
-              <div className="w-full flex flex-col min-h-full preview-section m-4">
+              {/* Right: Preview Section - Full width utilization */}
+              <div className="w-full flex flex-col min-h-full preview-section">
                 {/* Preview Header - More prominent */}
-                <div className="builder-section sticky top-4 z-20 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
+                <div className="builder-section sticky top-4 z-10 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark flex items-center">
                     <span className="mr-3 text-accent">👀</span>
                     Live Preview

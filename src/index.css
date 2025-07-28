@@ -81,6 +81,29 @@
 Builder Page Specific Styles */
 .builder-page {
   overflow-x: hidden;
+  /* Ensure navbar is always visible */
+  position: relative;
+  z-index: 1;
+}
+
+/* 30px padding responsive adjustments */
+.builder-page>div>div>div {
+  /* Default 30px padding */
+  padding: 30px;
+}
+
+@media (max-width: 640px) {
+  .builder-page>div>div>div {
+    /* Reduce to 15px on mobile */
+    padding: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .builder-page>div>div>div {
+    /* 20px on tablet */
+    padding: 20px;
+  }
 }
 
 /* Remove scrollbars from preview */
@@ -96,9 +119,24 @@ Builder Page Specific Styles */
   /* WebKit */
 }
 
-/* Ensure full height layouts */
+/* Ensure full height layouts with proper padding consideration and navbar space */
 .full-height-layout {
-  min-height: calc(100vh - 2rem);
+  min-height: calc(100vh - 140px);
+  /* Account for navbar (80px) + 30px padding top and bottom */
+}
+
+@media (max-width: 640px) {
+  .full-height-layout {
+    min-height: calc(100vh - 110px);
+    /* Account for navbar (80px) + 15px padding on mobile */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .full-height-layout {
+    min-height: calc(100vh - 120px);
+    /* Account for navbar (80px) + 20px padding on tablet */
+  }
 }
 
 /* Responsive form styling */
@@ -158,7 +196,11 @@ Builder Page Specific Styles */
 /* Enhanced Mobile Responsiveness for Builder Page */
 @media (max-width: 640px) {
   .builder-page {
-    padding: 0.5rem;
+    /* Reduce padding on mobile for better space utilization */
+  }
+
+  .builder-page>div>div>div {
+    padding: 15px !important;
   }
 
   .builder-grid {

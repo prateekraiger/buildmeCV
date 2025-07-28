@@ -1,6 +1,8 @@
 import React, { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../../components/UI";
+import { ChevronsLeft } from "../ui/ChevronsLeft";
+import { ChevronsRight } from "../ui/ChevronsRight";
 
 interface Step {
   id: string;
@@ -81,22 +83,33 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
         </AnimatePresence>
       </div>
 
-      {/* Navigation Section - Bigger buttons */}
+      {/* Navigation Section - Bigger buttons with chevron icons and borders */}
       <div className="flex justify-between items-center mt-8 p-4 bg-white/70 rounded-xl border border-primary/10">
         <Button
           variant="secondary"
           onClick={handlePrevious}
           disabled={currentStepIndex === 0}
-          className="px-6 py-3 text-base sm:text-lg font-medium"
+          className="px-6 py-3 text-base sm:text-lg font-medium flex items-center gap-2 border-2 border-gray-300 hover:border-gray-400 transition-colors"
         >
-          ← Previous
+          <ChevronsLeft width={20} height={20} stroke="currentColor" />
+          Previous
         </Button>
         <Button
           variant="primary"
           onClick={handleNext}
-          className="px-6 py-3 text-base sm:text-lg font-medium"
+          className="px-6 py-3 text-base sm:text-lg font-medium flex items-center gap-2 border-2 border-primary hover:border-primary/80 transition-colors"
         >
-          {currentStepIndex === steps.length - 1 ? "Finish ✓" : "Next →"}
+          {currentStepIndex === steps.length - 1 ? (
+            <>
+              Finish
+              <span className="text-lg">✓</span>
+            </>
+          ) : (
+            <>
+              Next
+              <ChevronsRight width={20} height={20} stroke="currentColor" />
+            </>
+          )}
         </Button>
       </div>
     </div>
