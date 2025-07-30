@@ -1,35 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/UI";
 import { AnimatedGroup } from "@/components/ui/animated-group";
-import { Modal } from "@/components/Modal";
-import { Button } from "@/components/ui/button";
 
 interface TemplatePreviewCardProps {
   title: string;
   children: React.ReactNode;
   isPopular?: boolean;
-  onPreview: () => void;
 }
 
 const TemplatePreviewCard: React.FC<TemplatePreviewCardProps> = ({
   title,
   children,
   isPopular = false,
-  onPreview,
 }) => (
   <motion.div
-    whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)" }}
+    whileHover={{
+      scale: 1.03,
+      boxShadow:
+        "0px 0px 30px rgba(59, 130, 246, 0.4), 0px 0px 60px rgba(59, 130, 246, 0.2)",
+    }}
     transition={{ type: "spring", stiffness: 300 }}
-    className="relative cursor-pointer"
-    onClick={onPreview}
+    className="relative"
   >
     {isPopular && (
       <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
         Popular
       </span>
     )}
-    <Card className="p-2 bg-primary/30 backdrop-blur-sm">
+    <Card className="p-2 bg-primary/30 backdrop-blur-sm shadow-lg hover:shadow-blue-500/25 transition-shadow duration-300">
       <div className="aspect-[8.5/11] w-full rounded-md overflow-hidden bg-white shadow-lg">
         {children}
       </div>
@@ -37,24 +36,6 @@ const TemplatePreviewCard: React.FC<TemplatePreviewCardProps> = ({
     </Card>
   </motion.div>
 );
-
-const TemplatePreviewModal: React.FC<{
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}> = ({ isOpen, onClose, title, children }) => {
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} title={title} size="xl">
-      <div className="aspect-[8.5/11] w-full rounded-md overflow-hidden bg-white shadow-lg">
-        {children}
-      </div>
-      <div className="mt-4 text-center">
-        <Button onClick={onClose}>Close</Button>
-      </div>
-    </Modal>
-  );
-};
 
 interface TemplateShowcaseProps {
   content: {
@@ -68,22 +49,6 @@ interface TemplateShowcaseProps {
 }
 
 export function TemplateShowcase({ content }: TemplateShowcaseProps) {
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<{
-    title: string;
-    content: React.ReactNode;
-  } | null>(null);
-
-  const openPreview = (title: string, content: React.ReactNode) => {
-    setSelectedTemplate({ title, content });
-    setIsPreviewOpen(true);
-  };
-
-  const closePreview = () => {
-    setIsPreviewOpen(false);
-    setSelectedTemplate(null);
-  };
-
   const renderTemplateContent = (templateContent: string) => {
     // This is a simplified example. In a real application, you might use a more robust way to render HTML strings or components dynamically.
     if (templateContent === "modern_template_preview_html") {
@@ -140,27 +105,11 @@ export function TemplateShowcase({ content }: TemplateShowcaseProps) {
             key={index}
             title={template.title}
             isPopular={template.isPopular}
-            onPreview={() =>
-              openPreview(
-                template.title,
-                renderTemplateContent(template.content)
-              )
-            }
           >
             {renderTemplateContent(template.content)}
           </TemplatePreviewCard>
         ))}
       </AnimatedGroup>
-      {selectedTemplate && (
-        <TemplatePreviewModal
-          isOpen={isPreviewOpen}
-          onClose={closePreview}
-          title={selectedTemplate.title}
-          aria-label={`Template preview for ${selectedTemplate.title}`}
-        >
-          {selectedTemplate.content}
-        </TemplatePreviewModal>
-      )}
     </section>
   );
 }
