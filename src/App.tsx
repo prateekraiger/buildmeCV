@@ -3,6 +3,9 @@ import HomePage from "./pages/HomePage";
 import BuilderPage from "./pages/BuilderPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import TemplatesPage from "./pages/TemplatesPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { ToastProvider } from "./components/Toast";
 import { ErrorBoundary } from "./components/ErrorBoundary";
@@ -50,6 +53,9 @@ function App() {
               <Route path="/builder" element={<BuilderPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/templates" element={<TemplatesPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Layout>
