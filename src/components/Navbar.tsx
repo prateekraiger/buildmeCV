@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Shield } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useSecurityContext } from "./SecurityProvider";
 
@@ -84,25 +83,15 @@ const Navbar = () => {
               <Link
                 to="/"
                 aria-label="buildmeCV - Go to home page"
-                className="flex items-center focus-ring rounded-lg p-1 -m-1 group"
+                className="flex items-center focus-ring rounded-lg p-1 -m-1"
               >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <Logo />
-                </motion.div>
-                <motion.span 
-                  className="font-bold text-xl tracking-tight text-primary ml-2"
-                  whileHover={{ x: 2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                <Logo />
+                <span className="font-bold text-xl tracking-tight text-primary ml-2">
                   buildmeCV
-                </motion.span>
+                </span>
               </Link>
 
-              <motion.button
+              <button
                 onClick={() => setMenuState(!menuState)}
                 aria-label={
                   menuState ? "Close navigation menu" : "Open navigation menu"
@@ -110,33 +99,10 @@ const Navbar = () => {
                 aria-expanded={menuState}
                 aria-controls="mobile-menu"
                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden focus-ring rounded-md"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
               >
-                <AnimatePresence mode="wait">
-                  {!menuState ? (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Menu className="size-6" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <X className="size-6" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+                <Menu className="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+                <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+              </button>
             </div>
 
             {/* Desktop Navigation */}
@@ -149,26 +115,12 @@ const Navbar = () => {
                       role="menuitem"
                       aria-label={item.ariaLabel}
                       className={cn(
-                        "text-muted-foreground hover:text-accent-foreground block duration-150 focus-ring rounded-md px-3 py-2 relative",
+                        "text-muted-foreground hover:text-accent-foreground block duration-150 focus-ring rounded-md px-3 py-2",
                         location.pathname === item.to &&
                           "text-primary font-medium"
                       )}
                     >
-                      <motion.span
-                        whileHover={{ y: -2 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {item.name}
-                      </motion.span>
-                      {location.pathname === item.to && (
-                        <motion.div
-                          className="absolute -bottom-1 left-1/2 w-1 h-1 bg-primary rounded-full"
-                          layoutId="activeIndicator"
-                          initial={{ x: "-50%" }}
-                          animate={{ x: "-50%" }}
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        />
-                      )}
+                      <span>{item.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -210,17 +162,9 @@ const Navbar = () => {
               {/* CTA Button */}
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Link to="/builder" aria-label="Start building your resume">
-                  <motion.button 
-                    className="w-full sm:w-auto px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium transition-colors focus-ring"
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
+                  <button className="w-full sm:w-auto px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium transition-colors focus-ring">
                     Get Started
-                  </motion.button>
+                  </button>
                 </Link>
               </div>
             </div>
