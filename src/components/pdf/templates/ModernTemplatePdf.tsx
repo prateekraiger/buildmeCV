@@ -15,8 +15,8 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
       fontFamily: "Helvetica",
       backgroundColor: "#ffffff",
       color: "#003049",
-      fontSize: 9,
-      lineHeight: 1.2,
+      fontSize: 10.5,
+      lineHeight: 1.4,
     },
     sidebar: {
       width: "33%",
@@ -27,7 +27,7 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
 
     // Sidebar Styles - Compact for one page
     name: {
-      fontSize: 18,
+      fontSize: 22,
       fontWeight: "bold",
       color: accentColor,
       marginBottom: 2,
@@ -42,16 +42,16 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
     },
     contactBlock: { marginBottom: 3, textAlign: "center" },
     contactLabel: {
-      fontSize: 8,
+      fontSize: 9,
       fontWeight: "bold",
       color: accentColor,
       marginBottom: 0.5,
     },
-    contactText: { fontSize: 8, color: "#003049" },
-    contactLink: { fontSize: 8, color: accentColor, textDecoration: "none" },
+    contactText: { fontSize: 9, color: "#003049" },
+    contactLink: { fontSize: 9, color: accentColor, textDecoration: "none" },
     sidebarSection: { marginBottom: 8 },
     sidebarSectionTitle: {
-      fontSize: 12,
+      fontSize: 13,
       fontWeight: "bold",
       color: accentColor,
       borderBottom: `1px solid ${accentColor}`,
@@ -64,32 +64,32 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
       color: "#003049",
       padding: "1px 4px",
       borderRadius: 3,
-      fontSize: 7,
+      fontSize: 9,
     },
-    achievement: { fontSize: 8, marginBottom: 2 },
+    achievement: { fontSize: 9, marginBottom: 2 },
 
     // Main Content Styles - Compact for one page
     mainSection: { marginBottom: 8 },
     mainSectionTitle: {
-      fontSize: 13,
+      fontSize: 15,
       fontWeight: "bold",
       color: accentColor,
       borderBottom: `1px solid ${accentColor}`,
       paddingBottom: 2,
       marginBottom: 4,
     },
-    summaryText: { fontSize: 9, fontStyle: "italic" },
+    summaryText: { fontSize: 10.5, fontStyle: "italic" },
     entry: { marginBottom: 6 },
     entryHeader: {
       flexDirection: "row",
       justifyContent: "space-between",
       marginBottom: 1,
     },
-    entryTitle: { fontSize: 10, fontWeight: "bold", color: "#003049" },
-    entryDate: { fontSize: 8, fontStyle: "italic", color: "#669bbc" },
-    entrySubtitle: { fontSize: 9, color: "#669bbc", marginBottom: 2 },
-    entryLink: { fontSize: 8, color: accentColor, textDecoration: "none" },
-    description: { marginTop: 2, fontSize: 8, lineHeight: 1.1 },
+    entryTitle: { fontSize: 11, fontWeight: "bold", color: "#003049" },
+    entryDate: { fontSize: 9, fontStyle: "italic", color: "#669bbc" },
+    entrySubtitle: { fontSize: 10, color: "#669bbc", marginBottom: 2 },
+    entryLink: { fontSize: 9, color: accentColor, textDecoration: "none" },
+    description: { marginTop: 2, fontSize: 10.5, lineHeight: 1.4 },
   });
 
   const SectionRenderer: React.FC<{
@@ -107,7 +107,7 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
           <View style={sectionStyle}>
             <Text style={titleStyle}>Experience</Text>
             {resume.experience.map((exp) => (
-              <View key={exp.id} style={styles.entry}>
+              <View key={exp.id} style={styles.entry} wrap={false}>
                 <View style={styles.entryHeader}>
                   <Text style={styles.entryTitle}>{exp.role}</Text>
                   <Text style={styles.entryDate}>
@@ -131,7 +131,7 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
           <View style={sectionStyle}>
             <Text style={titleStyle}>Education</Text>
             {resume.education.map((edu) => (
-              <View key={edu.id} style={styles.entry}>
+              <View key={edu.id} style={styles.entry} wrap={false}>
                 <View style={styles.entryHeader}>
                   <Text style={styles.entryTitle}>{edu.degree}</Text>
                   <Text style={styles.entryDate}>
@@ -153,7 +153,7 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
           <View style={sectionStyle}>
             <Text style={titleStyle}>Projects</Text>
             {resume.projects.map((proj) => (
-              <View key={proj.id} style={styles.entry}>
+              <View key={proj.id} style={styles.entry} wrap={false}>
                 <View style={styles.entryHeader}>
                   <Text style={styles.entryTitle}>{proj.name}</Text>
                   {proj.url && (
@@ -285,10 +285,12 @@ export const ModernTemplatePdf: React.FC<{ resume: ResumeData }> = ({
             <Text style={styles.summaryText}>{summary}</Text>
           </View>
         )}
-        {/* Custom section order for Modern: Education → Experience → Projects */}
-        <SectionRenderer sectionKey="education" view="main" />
-        <SectionRenderer sectionKey="experience" view="main" />
-        <SectionRenderer sectionKey="projects" view="main" />
+        {sectionOrder.map(
+          (key) =>
+            mainSections.includes(key) && (
+              <SectionRenderer key={key} sectionKey={key} view="main" />
+            )
+        )}
       </View>
     </Page>
   );

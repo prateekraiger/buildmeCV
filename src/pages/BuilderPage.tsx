@@ -166,7 +166,6 @@ const BuilderPage: React.FC = () => {
                 {/* Preview Header - More prominent */}
                 <div className="builder-section sticky top-4 z-10 bg-white/95 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-primary/20 mb-8">
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dark flex items-center">
-                    <span className="mr-3 text-accent">👀</span>
                     Live Preview
                   </h2>
                   <p className="text-black font-medium mt-2 text-sm sm:text-base preview-description">

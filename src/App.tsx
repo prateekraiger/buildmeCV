@@ -38,10 +38,14 @@ Font.register({
 
 import { Layout } from "./components/Layout";
 
+import { Preloader } from "./components/ui/Preloader";
+
 function App() {
   const location = useLocation();
   return (
-    <ErrorBoundary>
+    <>
+      <Preloader />
+      <ErrorBoundary>
       <SecurityProvider>
         <ToastProvider>
           <Layout>
@@ -56,6 +60,7 @@ function App() {
         </ToastProvider>
       </SecurityProvider>
     </ErrorBoundary>
+    </>
   );
 }
 

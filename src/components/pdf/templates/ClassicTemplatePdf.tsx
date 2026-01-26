@@ -13,36 +13,36 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
       padding: "0.3in",
       backgroundColor: "#ffffff",
       color: "#003049",
-      fontSize: 9,
-      lineHeight: 1.2,
+      fontSize: 10.5,
+      lineHeight: 1.4,
     },
     header: { textAlign: "center", marginBottom: 12 },
     name: {
-      fontSize: 24,
+      fontSize: 28,
       fontWeight: "bold",
       marginBottom: 2,
       color: accentColor,
     },
-    title: { fontSize: 13, fontWeight: "normal", color: "#003049" },
+    title: { fontSize: 14, fontWeight: "normal", color: "#003049" },
     contactInfo: {
       flexDirection: "row",
       justifyContent: "center",
       flexWrap: "wrap",
       marginTop: 6,
-      fontSize: 8,
+      fontSize: 9,
       color: "#669bbc",
     },
     contactItem: { marginHorizontal: 6 },
     summarySection: {
       marginVertical: 8,
       textAlign: "center",
-      fontSize: 9,
+      fontSize: 10.5,
       fontStyle: "italic",
       paddingHorizontal: "0.2in",
     },
     section: { marginBottom: 8 },
     sectionTitle: {
-      fontSize: 13,
+      fontSize: 16,
       fontWeight: "bold",
       color: accentColor,
       borderBottom: `1px solid ${accentColor}`,
@@ -55,11 +55,11 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
       justifyContent: "space-between",
       marginBottom: 1,
     },
-    entryTitle: { fontSize: 10, fontWeight: "bold", color: "#003049" },
-    entryDate: { fontSize: 8, fontStyle: "italic", color: "#669bbc" },
-    entrySubtitle: { fontSize: 9, color: "#669bbc", marginBottom: 1 },
-    entryLink: { fontSize: 8, color: accentColor, textDecoration: "none" },
-    description: { marginTop: 2, fontSize: 8, lineHeight: 1.1 },
+    entryTitle: { fontSize: 11, fontWeight: "bold", color: "#003049" },
+    entryDate: { fontSize: 9, fontStyle: "italic", color: "#669bbc" },
+    entrySubtitle: { fontSize: 10, color: "#669bbc", marginBottom: 1 },
+    entryLink: { fontSize: 9, color: accentColor, textDecoration: "none" },
+    description: { marginTop: 2, fontSize: 10.5, lineHeight: 1.4 },
     skillsContainer: { flexDirection: "row", flexWrap: "wrap" },
     skill: {
       backgroundColor: `${accentColor}20`,
@@ -67,9 +67,9 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
       padding: "2px 6px",
       borderRadius: 8,
       margin: 1,
-      fontSize: 8,
+      fontSize: 9,
     },
-    achievement: { marginBottom: 2, fontSize: 8 },
+    achievement: { marginBottom: 2, fontSize: 10.5 },
   });
 
   const SectionRenderer: React.FC<{ sectionKey: SectionKey }> = ({
@@ -81,7 +81,7 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Experience</Text>
             {resume.experience.map((exp) => (
-              <View key={exp.id} style={styles.entry}>
+              <View key={exp.id} style={styles.entry} wrap={false}>
                 <View style={styles.entryHeader}>
                   <Text style={styles.entryTitle}>{exp.role}</Text>
                   <Text style={styles.entryDate}>
@@ -105,7 +105,7 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Education</Text>
             {resume.education.map((edu) => (
-              <View key={edu.id} style={styles.entry}>
+              <View key={edu.id} style={styles.entry} wrap={false}>
                 <View style={styles.entryHeader}>
                   <Text style={styles.entryTitle}>{edu.degree}</Text>
                   <Text style={styles.entryDate}>
@@ -127,7 +127,7 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Projects</Text>
             {resume.projects.map((proj) => (
-              <View key={proj.id} style={styles.entry}>
+              <View key={proj.id} style={styles.entry} wrap={false}>
                 <View style={styles.entryHeader}>
                   <Text style={styles.entryTitle}>{proj.name}</Text>
                   {proj.url && (
@@ -239,12 +239,9 @@ export const ClassicTemplatePdf: React.FC<{ resume: ResumeData }> = ({
         </View>
       )}
 
-      {/* Custom section order for Classic: Education → Skills → Experience → Projects */}
-      <SectionRenderer sectionKey="education" />
-      <SectionRenderer sectionKey="skills" />
-      <SectionRenderer sectionKey="experience" />
-      <SectionRenderer sectionKey="projects" />
-      <SectionRenderer sectionKey="achievements" />
+      {sectionOrder.map((key) => (
+        <SectionRenderer key={key} sectionKey={key} />
+      ))}
     </Page>
   );
 };

@@ -30,15 +30,15 @@ const SectionRenderer: React.FC<{
             {resume.experience.map((exp) => (
               <div key={exp.id} className="mb-3">
                 <div className="flex justify-between">
-                  <p className="font-bold text-foreground">{exp.role}</p>
-                  <p className="text-xs italic text-secondary">
+                  <p className="font-bold text-foreground text-md">{exp.role}</p>
+                  <p className="text-sm italic text-secondary">
                     {exp.startDate} - {exp.endDate}
                   </p>
                 </div>
-                <p className="text-sm" style={{ color: accentColor }}>
+                <p className="text-base" style={{ color: accentColor }}>
                   {exp.company} | {exp.location}
                 </p>
-                <div className="text-xs mt-1 text-foreground/90">
+                <div className="text-sm mt-1 text-foreground/90 leading-relaxed">
                   {Array.isArray(exp.description) ? (
                     exp.description.map((desc, i) => (
                       <div key={i} className="mb-1">
@@ -61,16 +61,16 @@ const SectionRenderer: React.FC<{
             {resume.education.map((edu) => (
               <div key={edu.id} className="mb-3">
                 <div className="flex justify-between">
-                  <p className="font-bold text-foreground">{edu.degree}</p>
-                  <p className="text-xs italic text-secondary">
+                  <p className="font-bold text-foreground text-md">{edu.degree}</p>
+                  <p className="text-sm italic text-secondary">
                     {edu.startDate} - {edu.endDate}
                   </p>
                 </div>
-                <p className="text-sm" style={{ color: accentColor }}>
+                <p className="text-base" style={{ color: accentColor }}>
                   {edu.university} | {edu.location}
                 </p>
                 {edu.gpa && (
-                  <p className="text-xs text-secondary/90">GPA: {edu.gpa}</p>
+                  <p className="text-sm text-secondary/90">GPA: {edu.gpa}</p>
                 )}
               </div>
             ))}
@@ -84,12 +84,12 @@ const SectionRenderer: React.FC<{
             {resume.projects.map((proj) => (
               <div key={proj.id} className="mb-3">
                 <div className="flex justify-between items-baseline">
-                  <p className="font-bold text-foreground">{proj.name}</p>
-                  <p className="text-xs" style={{ color: accentColor }}>
+                  <p className="font-bold text-foreground text-md">{proj.name}</p>
+                  <p className="text-sm" style={{ color: accentColor }}>
                     {proj.url}
                   </p>
                 </div>
-                <div className="text-xs mt-1 text-foreground/90">
+                <div className="text-sm mt-1 text-foreground/90 leading-relaxed">
                   {Array.isArray(proj.description) ? (
                     proj.description.map((desc, i) => (
                       <div key={i} className="mb-1">
@@ -113,7 +113,7 @@ const SectionRenderer: React.FC<{
               {resume.skills.map((skill) => (
                 <span
                   key={skill.id}
-                  className="bg-accent/20 text-primary rounded-full px-3 py-1 text-xs font-medium"
+                  className="bg-accent/20 text-primary rounded-full px-3 py-1 text-sm font-medium"
                 >
                   {skill.name}
                 </span>
@@ -128,7 +128,7 @@ const SectionRenderer: React.FC<{
           <Section title="Achievements" accentColor={accentColor}>
             <ul className="list-disc list-inside text-xs space-y-1">
               {resume.achievements.map((ach) => (
-                <li key={ach.id} className="text-primary/90">
+                <li key={ach.id} className="text-primary/90 text-sm">
                   {ach.name}
                 </li>
               ))}
@@ -146,19 +146,19 @@ export const ClassicPreview: React.FC<{ resume: ResumeData }> = ({
 }) => {
   const { personal, summary, sectionOrder, accentColor } = resume;
   return (
-    <>
+    <div className="min-h-full w-full">
       {/* Header */}
       <div className="text-center p-6">
-        <h1 className="text-4xl font-bold" style={{ color: accentColor }}>
+        <h1 className="text-5xl font-bold" style={{ color: accentColor }}>
           {personal.name}
         </h1>
         <p className="text-lg text-foreground mt-1">{personal.title}</p>
-        <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-3 text-foreground">
+        <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-sm mt-3 text-foreground">
           <span>{personal.email}</span>
           <span>{personal.phone}</span>
           <span>{personal.location}</span>
         </div>
-        <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs mt-1 text-foreground">
+        <div className="flex justify-center flex-wrap gap-x-4 gap-y-1 text-sm mt-1 text-foreground">
           {personal.linkedin && (
             <span>
               <a
@@ -211,37 +211,19 @@ export const ClassicPreview: React.FC<{ resume: ResumeData }> = ({
         {/* Summary */}
         {summary && (
           <div className="mb-4 text-center">
-            <p className="text-xs italic text-primary/80">{summary}</p>
+            <p className="text-sm italic text-primary/80 leading-relaxed">{summary}</p>
           </div>
         )}
 
-        {/* Custom Section Order: Education → Skills → Experience → Projects → Achievements */}
-        <SectionRenderer
-          sectionKey="education"
-          resume={resume}
-          accentColor={accentColor}
-        />
-        <SectionRenderer
-          sectionKey="skills"
-          resume={resume}
-          accentColor={accentColor}
-        />
-        <SectionRenderer
-          sectionKey="experience"
-          resume={resume}
-          accentColor={accentColor}
-        />
-        <SectionRenderer
-          sectionKey="projects"
-          resume={resume}
-          accentColor={accentColor}
-        />
-        <SectionRenderer
-          sectionKey="achievements"
-          resume={resume}
-          accentColor={accentColor}
-        />
+        {sectionOrder.map((key) => (
+          <SectionRenderer
+            key={key}
+            sectionKey={key}
+            resume={resume}
+            accentColor={accentColor}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 };

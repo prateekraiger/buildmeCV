@@ -10,8 +10,6 @@ import {
   Globe,
   MessageCircle,
   Send,
-  MapPin,
-  Clock,
   CheckCircle,
 } from "lucide-react";
 
@@ -44,6 +42,11 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Cast motion components to any
+  const MotionH1 = motion.h1 as any;
+  const MotionP = motion.p as any;
+  const MotionDiv = motion.div as any;
 
   const contactMethods: ContactMethod[] = [
     {
@@ -94,28 +97,28 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-16">
-        <motion.h1
+        <MotionH1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold text-dark mb-4"
         >
           {content.title}
-        </motion.h1>
-        <motion.p
+        </MotionH1>
+        <MotionP
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xl text-gray-600 max-w-3xl mx-auto"
         >
           {content.description}
-        </motion.p>
+        </MotionP>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Contact Methods */}
         <div className="lg:col-span-1 space-y-6">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -123,7 +126,7 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
             <h3 className="text-2xl font-bold text-dark mb-6">Get in Touch</h3>
             <div className="space-y-4">
               {contactMethods.map((method, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -153,35 +156,15 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
-          </motion.div>
-
-          {/* Additional Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <Card className="p-6 bg-gradient-to-br from-primary/5 to-accent/5">
-              <div className="flex items-center space-x-3 mb-4">
-                <Clock className="w-6 h-6 text-primary" />
-                <h4 className="font-semibold text-dark">Response Time</h4>
-              </div>
-              <p className="text-gray-700 mb-2">We typically respond within:</p>
-              <ul className="space-y-1 text-sm text-gray-600">
-                <li>• Email: 24 hours</li>
-                <li>• Phone: Immediate during business hours</li>
-                <li>• Contact form: 12 hours</li>
-              </ul>
-            </Card>
-          </motion.div>
+          </MotionDiv>
         </div>
 
         {/* Contact Form */}
         <div className="lg:col-span-2">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -195,7 +178,7 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
               </div>
 
               {isSubmitted ? (
-                <motion.div
+                <MotionDiv
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
@@ -207,7 +190,7 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
                   <p className="text-gray-600">
                     Thank you for reaching out. We'll get back to you soon.
                   </p>
-                </motion.div>
+                </MotionDiv>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -287,7 +270,7 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
                     />
                   </div>
 
-                  <motion.div
+                  <MotionDiv
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -298,11 +281,11 @@ export function EnhancedContact({ content }: EnhancedContactProps) {
                       <Send className="w-5 h-5" />
                       <span>Send Message</span>
                     </Button>
-                  </motion.div>
+                  </MotionDiv>
                 </form>
               )}
             </Card>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </section>
