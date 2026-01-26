@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Github, Twitter } from "lucide-react";
+import { Github, Twitter, Briefcase } from "lucide-react";
 import Navbar from "./Navbar";
 import { Footer } from "./ui/footer";
 // Security headers will be handled by the SecurityProvider
@@ -66,13 +66,18 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
         socialLinks={[
           {
             icon: <Twitter className="h-5 w-5" />,
-            href: "https://twitter.com",
+            href: "https://x.com/mrpratik753",
             label: "Follow us on Twitter",
           },
           {
             icon: <Github className="h-5 w-5" />,
-            href: "https://github.com",
+            href: "https://github.com/prateekraiger",
             label: "View our GitHub",
+          },
+          {
+            icon: <Briefcase className="h-5 w-5" />,
+            href: "https://www.pratikdev.site/",
+            label: "Visit Portfolio",
           },
         ]}
         mainLinks={[
